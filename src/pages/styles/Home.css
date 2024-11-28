@@ -1,0 +1,47 @@
+.loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.hero {
+    border: 2px solid #1f1d1d;
+    border-radius: 5px;
+    padding: 50px;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.hero .title {
+    font-weight: 200;
+    max-width: 400px;
+    margin-bottom: 35px;
+}
+
+.hero .name {
+    font-weight: 600;
+}
+
+.hero p {
+    margin-bottom: 30px;
+    max-width: 375px;
+}
+
+.projects {
+    margin: 25px auto;
+    max-width: 1000px;
+}
+
+.projects h1 {
+    text-align: center;
+    margin: 10px auto;
+}
+
+.projects-container {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  column-gap: 10px;
+  row-gap: 10px;
+}
