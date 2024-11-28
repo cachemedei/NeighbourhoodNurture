@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import postLogin from '../api/post-login';
 import { useAuth } from '../hooks/use-auth';
+import './styles/LoginForm.css'
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -36,27 +37,29 @@ const LoginForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor='username'>Username:</label>
-                <input
-                    onChange={handleChange}
-                    type='text'
-                    id='username'
-                    placeholder='Enter username'
-                />
-            </div>
-            <div>
-                <label htmlFor='password'>Password:</label>
-                <input
-                    onChange={handleChange}
-                    type='password'
-                    id='password'
-                    placeholder='Password'
-                />
-            </div>
-            <button type='submit'>Log In</button>
-        </form>
+        <section className='login'>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor='username'>Username:</label>
+                    <input
+                        onChange={handleChange}
+                        type='text'
+                        id='username'
+                        placeholder='Enter username'
+                    />
+                </div>
+                <div>
+                    <label htmlFor='password'>Password:</label>
+                    <input
+                        onChange={handleChange}
+                        type='password'
+                        id='password'
+                        placeholder='Password'
+                    />
+                </div>
+                <button type='submit'>Log In</button>
+            </form>
+        </section>
     );
 };
 export default LoginForm;
