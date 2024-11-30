@@ -2,10 +2,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import postSignup from '../api/post-signup';
 import postLogin from '../api/post-login';
-import './styles/SignupForm.css'
+import { useAuth } from '../hooks/use-auth';
+import './styles/SignupForm.css';
 
 const SignupForm = () => {
     const navigate = useNavigate();
+    const { auth, setAuth } = useAuth();
+
     const [credentials, setCredentials] = useState({
         username: '',
         password: '',
@@ -19,18 +22,19 @@ const SignupForm = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (credentials.username && credentials.password) {
             postSignup(credentials.username, credentials.password).then(
                 (response) => {
-                    console.log(response);
-                }
-            );
-            postLogin(credentials.username, credentials.password).then(
-                (response) => {
-                    window.localStorage.setItem('token', response.token);
-                    navigate('/');
+                    postLogin(credentials.username, credentials.password).then(
+                        (response) => {
+                        window.localStorage.setItem('token', response.token),
+                            setAuth({
+                                token: response.token,
+                            }),
+                            navigate('/');
+                    })
                 }
             );
         }

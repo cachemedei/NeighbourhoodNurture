@@ -1,6 +1,7 @@
 import './styles/Home.css';
 import useProjects from '../hooks/use-projects';
 import ProjectCard from '../components/ProjectCard';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const { projects, isLoading } = useProjects();
@@ -23,7 +24,9 @@ const Home = () => {
                     a cleaner, greener and more vibrant local community all
                     starts here, with you.
                 </p>
-                <button>Create Project</button>
+                <button>
+                    <Link to='/newproject'>Create Project</Link>
+                </button>
             </section>
 
             {/* Projects Section */}
