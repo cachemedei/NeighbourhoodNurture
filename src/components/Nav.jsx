@@ -1,6 +1,7 @@
 import './styles/Nav.css'
 import { Link, Outlet } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
+import NurtureLogo from '/images/logo-green.png';
 
 const Nav = () => {
     const { auth, setAuth } = useAuth();
@@ -13,7 +14,7 @@ const Nav = () => {
     return (
         <>
             <nav>
-                <img src='images/logo-green.png' alt='' />
+                <img src={NurtureLogo} alt='' />
                 <div className='nav-links'>
                     <Link to='/'>Home</Link>
                     {auth.token ? (
