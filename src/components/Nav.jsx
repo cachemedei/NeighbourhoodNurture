@@ -13,7 +13,7 @@ const Nav = () => {
     return (
         <>
             <nav>
-                <img src='src/images/logo-green.png' alt='' />
+                <img src='images/logo-green.png' alt='' />
                 <div className='nav-links'>
                     <Link to='/'>Home</Link>
                     {auth.token ? (
