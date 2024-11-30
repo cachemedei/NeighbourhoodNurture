@@ -28,13 +28,17 @@ const SignupForm = () => {
             postSignup(credentials.username, credentials.password).then(
                 (response) => {
                     postLogin(credentials.username, credentials.password).then(
-                        (response) => {
-                        window.localStorage.setItem('token', response.token),
-                            setAuth({
-                                token: response.token,
-                            }),
-                            navigate('/');
-                    })
+                        (loginResponse) => {
+                            window.localStorage.setItem(
+                                'token',
+                                loginResponse.token
+                            ),
+                                setAuth({
+                                    token: response.token,
+                                }),
+                                navigate('/');
+                        }
+                    );
                 }
             );
         }
