@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 500px;
+    width: 350px;
     height: 500px;
     margin: 0 auto;
 }
@@ -11,10 +11,11 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 button {
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 input {
@@ -22,5 +23,15 @@ input {
 }
 
 form * {
-    padding: 15px;
+    padding: 10px;
+}
+
+.signup .form-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.signup p {
+    margin-top: 10px;
 }

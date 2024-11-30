@@ -1,4 +1,4 @@
-import './styles/Nav.css'
+import './styles/Nav.css';
 import { Link, Outlet } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 import NurtureLogo from '/images/logo-green.png';
@@ -22,9 +22,11 @@ const Nav = () => {
                             Log Out
                         </Link>
                     ) : (
-                        <Link to='/login'>Log In</Link>
+                        <>
+                            <Link to='/login'>Log In</Link>
+                            <Link to='/signup'>Sign Up</Link>
+                        </>
                     )}
-                    <Link to='/signup'>Sign Up</Link>
                 </div>
             </nav>
             <Outlet />

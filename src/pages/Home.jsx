@@ -2,9 +2,11 @@ import './styles/Home.css';
 import useProjects from '../hooks/use-projects';
 import ProjectCard from '../components/ProjectCard';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../hooks/use-auth';
 
 const Home = () => {
     const { projects, isLoading } = useProjects();
+    const {auth, setAuth} = useAuth()
 
     if (isLoading) {
         return <p className='loader'>Loading ...</p>;
@@ -25,7 +27,11 @@ const Home = () => {
                     starts here, with you.
                 </p>
                 <button>
-                    <Link to='/newproject'>Create Project</Link>
+                    {auth.token ? (
+                        <Link to='/newproject'>Create Project</Link>
+                    ) : (
+                        <Link to='/login'>Get Started</Link>
+                    )}
                 </button>
             </section>
 
