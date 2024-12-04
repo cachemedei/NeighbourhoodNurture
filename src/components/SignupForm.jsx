@@ -15,7 +15,7 @@ const SignupForm = () => {
     const { auth, setAuth } = useAuth();
 
     // const signupSchema = z.object({
-    //     fName: z.string().min(1, { message: 'Please enter your first name' }),
+    //     fName: z.string().min(1, 'Please enter your first name' ),
     //     lName: z.string().min(1, { message: 'Please enter your last name' }),
     //     email: z
     //         .string()
@@ -24,10 +24,23 @@ const SignupForm = () => {
     //     username: z.string().min(1, { message: 'Username required' }),
     //     password: z
     //         .string()
-    //         .min(8, { message: 'Password must be at least 8 characters long' }),
+    //         .min(5, { message: 'Password must be at least 5 characters long' }),
     // });
 
+    const signupSchema = z.object({
+        fName: z.string().min(1, 'Enter your first name'),
+        lName: z.string().min(1, 'Enter your last name'),
+        email: z.string()
+            .min(1, 'Enter your email')
+            .email(),
+        username: z.string().min(1, 'Enter a username'),
+        password: z.string().min(6, 'Password must be at least 6 characters'),
+    });
+
     const [credentials, setCredentials] = useState({
+        fName: '',
+        lName: '',
+        email: '',
         username: '',
         password: '',
     });
@@ -42,43 +55,50 @@ const SignupForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (credentials.username && credentials.password) {
-            postSignup(credentials.username, credentials.password).then(
-                (response) => {
-                    postLogin(credentials.username, credentials.password).then(
+        const result = signupSchema.safeParse(credentials)
+        if(!result.success) {
+            const error = result.error.errors?.[0]
+            if (error) {
+                alert(error.message)
+            } return
+        } else {
+            postSignup(result.data.fName, result.data.lName, result.data.email, result.data.username, result.data.password)
+            .then((response) => {
+                    postLogin(result.data.username, result.data.password).then(
                         (loginResponse) => {
-                            window.localStorage.setItem(
-                                'token',
-                                loginResponse.token
-                            ),
-                                setAuth({
-                                    token: response.token,
+                            window.localStorage.setItem('token', loginResponse.token),
+                            window.localStorage.setItem('id', loginResponse.id),
+                            setAuth({
+                                token: loginResponse.token,
+                                username: result.data.username,
+                                id: loginResponse.user_id,
                                 }),
-                                navigate('/');
+                            navigate('/');
                         }
                     );
                 }
             );
         }
+
     };
 
     return (
         <section className='signup'>
             <form onSubmit={handleSubmit}>
                 <div className='form-container'>
-                    <label htmlFor='f-name'>First Name:</label>
+                    <label htmlFor='fName'>First Name:</label>
                     <input
                         onChange={handleChange}
                         type='text'
-                        id='f-name'
+                        id='fName'
                     />
                 </div>
                 <div className='form-container'>
-                    <label htmlFor='l-name'>Last Name:</label>
+                    <label htmlFor='lName'>Last Name:</label>
                     <input
                         onChange={handleChange}
                         type='text'
-                        id='l-name'
+                        id='lName'
                     />
                 </div>
                 <div className='form-container'>

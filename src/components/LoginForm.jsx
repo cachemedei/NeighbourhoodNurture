@@ -36,7 +36,7 @@ const LoginForm = () => {
         if (!result.success) {
             const error = result.error.errors?.[0];
             if (error) {
-                alert('OOPS', error.message);
+                alert('bad form', error.message);
             }
             return;
         } else {
@@ -44,9 +44,11 @@ const LoginForm = () => {
                 (response) => {
                     window.localStorage.setItem('token', response.token);
                     window.localStorage.setItem('username', result.data.username)
+                    window.localStorage.setItem('id', response.user_id)
                     setAuth({
                         token: response.token,
                         username: result.data.username,
+                        id: response.user_id,
                     })
                     navigate('/');
                 }
