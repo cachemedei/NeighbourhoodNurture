@@ -14,7 +14,7 @@ const LoginForm = () => {
 
     const loginSchema = z.object({
         username: z.string().min(1, { message: 'Username required' }),
-        password: z.string()
+        password: z.string().min(1, {message: 'Please enter your password'}),
     });
 
     const [credentials, setCredentials] = useState({
