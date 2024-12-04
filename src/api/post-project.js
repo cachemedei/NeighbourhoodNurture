@@ -1,15 +1,17 @@
-async function postProject(title, description, goal, isActive) {
+async function postNewProject(title, description, goal, image, token) {
     const url = `${import.meta.env.VITE_API_URL}/projects/`;
     const response = await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Token ${token}`
         },
         body: JSON.stringify({
             title: title,
             description: description,
             goal: goal,
-            isActive: isActive,
+            image: image,
+            is_open: true,
         }),
     });
 
@@ -27,4 +29,4 @@ async function postProject(title, description, goal, isActive) {
     return await response.json();
 }
 
-export default postProject;
+export default postNewProject;

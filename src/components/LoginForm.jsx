@@ -14,9 +14,7 @@ const LoginForm = () => {
 
     const loginSchema = z.object({
         username: z.string().min(1, { message: 'Username required' }),
-        password: z
-            .string()
-            .min(8, { message: 'Password must be at least 8 characters long' }),
+        password: z.string()
     });
 
     const [credentials, setCredentials] = useState({
@@ -32,19 +30,24 @@ const LoginForm = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const result = loginSchema.safeParse(credentials);
         if (!result.success) {
             const error = result.error.errors?.[0];
             if (error) {
-                alert(error.message);
+                alert('OOPS', error.message);
             }
             return;
         } else {
             postLogin(result.data.username, result.data.password).then(
-                (loginResponse) => {
-                    window.localStorage.setItem('token', loginResponse.token);
+                (response) => {
+                    window.localStorage.setItem('token', response.token);
+                    window.localStorage.setItem('username', result.data.username)
+                    setAuth({
+                        token: response.token,
+                        username: result.data.username,
+                    })
                     navigate('/');
                 }
             );
@@ -80,3 +83,39 @@ const LoginForm = () => {
     );
 };
 export default LoginForm;
+
+
+
+// const [errors, setErrors] = useState({
+//      username: null,
+//      password: null,
+// })
+
+
+
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     const result = loginSchema.safeParse(credentials);
+    //     if (!result.success) {
+    //         const error = result.error.errors?.[0];
+    //         if (error) {
+    //             setErrors(error.message);
+    //         }
+    //         return;
+    //     } else {
+    //         postLogin(result.data.username, result.data.password).then(
+    //             (response) => {
+    //                 window.localStorage.setItem('token', response.token);
+    //                 setAuth({
+    //                     token: response.token,
+    //                 });
+    //                 navigate('/');
+    //             }
+    //         );
+    //     }
+    // };
+
+
+    // return (
+    //      <div>{errors}</div>
+    // )

@@ -1,0 +1,26 @@
+.new-project-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 580px;
+    margin-top: 20px;
+}
+
+.new-project-form form * {
+    padding: 10px;
+}
+
+.new-project-form form {
+    height: 500px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+}
+
+.new-project-form textarea {
+    border-radius: 8px;
+}

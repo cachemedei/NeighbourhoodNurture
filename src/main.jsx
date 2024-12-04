@@ -11,6 +11,7 @@ import Nav from './components/Nav';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import { AuthProvider } from './components/AuthProvider';
+import Account from './pages/Account';
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
             { path: '/', element: <Home /> },
             { path: '/login', element: <Login /> },
             { path: '/signup', element: <Signup /> },
+            { path: '/account', element: <Account /> },
             { path: '/newproject', element: <NewProject /> },
             { path: '/project/:id', element: <Project /> },
         ],

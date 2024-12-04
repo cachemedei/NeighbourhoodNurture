@@ -1,19 +1,22 @@
 import './styles/Project.css';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import useProject from '../hooks/use-project';
+import { useAuth } from '../hooks/use-auth';
+import PledgeForm from '../components/PledgeForm';
 
 const Project = () => {
     const { id } = useParams();
     const { project, isLoading, error } = useProject(id);
+    const { auth, setAuth } = useAuth();
 
+    //loader
     if (isLoading) {
         return <p className='loader'>Loading...</p>;
     }
-
     if (error) {
         return <p>{error.message}</p>;
     }
-
+    //date formatter
     const isoDate = project.date_created;
     const date = new Date(isoDate);
     const options = {
@@ -41,11 +44,7 @@ const Project = () => {
                     );
                 })}
             </ul>
-            {project.is_open ? (
-                <p>This project is currently active</p>
-            ) : (
-                <p>This project is no longer active</p>
-            )}
+            <PledgeForm projectId={project.id} />
         </section>
     );
 };

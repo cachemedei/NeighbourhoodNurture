@@ -18,9 +18,13 @@ const Nav = () => {
                 <div className='nav-links'>
                     <Link to='/'>Home</Link>
                     {auth.token ? (
+                        <>
+                        
                         <Link to='/' onClick={handleLogout}>
                             Log Out
                         </Link>
+                        <Link to='/account'>Account</Link>
+                        </>
                     ) : (
                         <>
                             <Link to='/login'>Log In</Link>
