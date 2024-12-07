@@ -12,61 +12,63 @@ const NewProjectForm = () => {
     const navigate = useNavigate();
     const { auth, setAuth } = useAuth();
 
-    // zod schema
-    const createProjectSchema = z.object({
-        title: z.string().min(1, { message: 'Please enter a title' }),
-        description: z
-            .string()
-            .min(5, { message: 'Please give your project more description' }),
-        goal: z.string().min(1, { message: 'Please enter a valid number' }),
-        image: z.string().min(1, { message: 'Please provide a valid URL' }),
-    });
-
-    // state for new project
     const [projectDetails, setProjectDetails] = useState({
         title: '',
         description: '',
-        goal: 0,
+        goal: '',
         image: '',
     });
 
-    // checks for file or value
+    const createProjectSchema = z.object({
+        title: z
+            .string()
+            .min(1, { message: 'Please give your project a title' }),
+        description: z
+            .string()
+            .min(10, { message: 'Give your project a good description' }),
+        goal: z
+            .string()
+            .min(1, { message: 'Please provide a goal for your project' }),
+        image: z
+            .string()
+            .url()
+    });
+
     const handleChange = (e) => {
         const { id, value } = e.target;
-
-        setProjectDetails((prevProjectDetails) => ({
-            ...prevProjectDetails,
+        setProjectDetails((prev) => ({
+            ...prev,
             [id]: value,
         }));
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        const result = createProjectSchema.safeParse(projectDetails);
+        e.preventDefault()
+        const result = createProjectSchema.safeParse(projectDetails)
 
         if (!result.success) {
-            const error = result.error.errors?.[0];
+            const error = result.error.errors?.[0]
             if (error) {
-                alert(error.message);
+                alert(error.message)
             }
-            return;
+            return
         } else {
             try {
                 auth.token
                     ? await postNewProject(
-                          result.data.title,
-                          result.data.description,
-                          result.data.goal,
-                          result.data.image,
-                          auth.token
-                      )
-                    : alert('please log in to create a project');
+                        result.data.title,
+                        result.data.description,
+                        result.data.goal,
+                        result.data.image,
+                        auth.token
+                    )
+                    : alert('Please log in to create a project')
+                    navigate('/');
             } catch (error) {
-                console.error('Error creating project: ', error);
-                console.log('oopsies');
+                console.error('Error creating project: ', error)
             }
         }
-    };
+    }
 
 //image url:
 //https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png
@@ -75,6 +77,7 @@ const NewProjectForm = () => {
         <section className='new-project-form'>
             <h1>Create Your Own Project</h1>
             <form onSubmit={handleSubmit}>
+
                 {/* title */}
                 <div className='input-container'>
                     <label htmlFor='title'>Project Title:</label>
@@ -88,6 +91,7 @@ const NewProjectForm = () => {
                         onChange={handleChange}
                         name='description'
                         id='description'
+                        value={projectDetails.description}
                         rows='4'
                         placeholder='Please enter a detailed description of your project'
                     ></textarea>
@@ -99,6 +103,7 @@ const NewProjectForm = () => {
                     <input
                         onChange={handleChange}
                         type='number'
+                        value={projectDetails.goal}
                         placeholder='$'
                         id='goal'
                     />
@@ -109,25 +114,17 @@ const NewProjectForm = () => {
                     <label htmlFor='image'>Image:</label>
                     <input
                         onChange={handleChange}
+                        value={projectDetails.image}
                         id='image'
                         type='url'
-                        accept='image/*'
                     />
                 </div>
 
-                {/* is active */}
-                <div className='input-cb'>
-                    <label htmlFor='isActive'>Active</label>
-                    <input
-                        onChange={handleChange}
-                        id='isActive'
-                        type='checkbox'
-                        defaultChecked='true'
-                    />
-                </div>
                 <button type='submit'>Create Project</button>
             </form>
         </section>
     );
 };
 export default NewProjectForm;
+
+

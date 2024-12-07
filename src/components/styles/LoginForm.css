@@ -13,11 +13,11 @@
     align-items: center;
 }
 
-button {
+.login button {
     margin-top: 50px;
 }
 
-input {
+.login input {
     border-radius: 8px;
 }
 

@@ -1,0 +1,28 @@
+.pledge {
+    padding: 20px;
+}
+
+.pledge form {
+    display: flex;
+    flex-direction: column;
+}
+
+.pledge button {
+    margin-right: 5px;
+}
+
+.pledge .other {
+    width: 100px;
+    padding: 3px;
+    border: 8px;
+}
+
+.pledge .comment {
+    width: 80%;
+    margin: 20px 0;
+}
+
+.pledge .pledge-btn {
+    width: 40%;
+    margin: 10px auto;
+}

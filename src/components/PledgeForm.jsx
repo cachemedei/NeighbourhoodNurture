@@ -1,3 +1,5 @@
+import './styles/PledgeForm.css'
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
@@ -5,13 +7,12 @@ import { Link, useParams } from 'react-router-dom';
 import postPledge from '../api/post-pledge';
 
 const PledgeForm = ({ projectId }) => {
-    const id = projectId;
     const navigate = useNavigate();
 
     const { auth, setAuth } = useAuth();
 
     const [pledge, setPledge] = useState({
-        supporter: auth.username,
+        supporter: auth.userId,
         amount: '',
         comment: '',
         project: projectId,
@@ -44,6 +45,8 @@ const PledgeForm = ({ projectId }) => {
         }
     };
 
+    // navigate(0)
+
     return (
         <section className='pledge'>
             <h4>How much would you like to pledge {pledge.supporter}?</h4>
@@ -65,23 +68,26 @@ const PledgeForm = ({ projectId }) => {
                     <button value='100' id='amount' onClick={handleChange}>
                         $100
                     </button>
-                    <label htmlFor='amount'>Other Amount: </label>
-                    <input
-                        onChange={handleChange}
-                        type='number'
-                        id='amount'
-                        placeholder='$'
-                    />
+                    <p>{pledge.amount}</p>
                 </div>
-                <p>${pledge.amount}</p>
+                <label htmlFor='amount'>Other Amount: </label>
+                <input
+                    onChange={handleChange}
+                    type='number'
+                    id='amount'
+                    placeholder='$'
+                    className='other'
+                />
+
                 <label htmlFor='comment'>Comment: </label>
                 <textarea
+                    className='comment'
                     name='comment'
                     id='comment'
                     rows={3}
                     onChange={handleChange}
                 ></textarea>
-                <button>Pledge</button>
+                <button className='pledge-btn'>Pledge</button>
             </form>
         </section>
     );

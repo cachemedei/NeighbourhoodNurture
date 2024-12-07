@@ -14,19 +14,6 @@ const SignupForm = () => {
     const navigate = useNavigate();
     const { auth, setAuth } = useAuth();
 
-    // const signupSchema = z.object({
-    //     fName: z.string().min(1, 'Please enter your first name' ),
-    //     lName: z.string().min(1, { message: 'Please enter your last name' }),
-    //     email: z
-    //         .string()
-    //         .min(1, { message: 'Please enter a valid email' })
-    //         .email('This is not a valid email'),
-    //     username: z.string().min(1, { message: 'Username required' }),
-    //     password: z
-    //         .string()
-    //         .min(5, { message: 'Password must be at least 5 characters long' }),
-    // });
-
     const signupSchema = z.object({
         fName: z.string().min(1, 'Enter your first name'),
         lName: z.string().min(1, 'Enter your last name'),

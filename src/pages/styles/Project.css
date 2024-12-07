@@ -9,9 +9,19 @@
 .project-page {
     display: flex;
     flex-direction: column;
-    max-width: 700px;
-    align-items: center;
-    margin: 0 auto;
-    min-height: 600px;
+    margin: 25px auto;
+    max-width: 900px
+}
+
+.project-page .pledges {
+    display: flex;
+    width: 100%;
     justify-content: space-around;
+}
+
+.pledges .data {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 250px
 }

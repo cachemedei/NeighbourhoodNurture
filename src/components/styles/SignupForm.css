@@ -14,11 +14,11 @@
     width: 100%;
 }
 
-button {
+.signup button {
     margin-top: 40px;
 }
 
-input {
+.signup input {
     border-radius: 8px;
 }
 

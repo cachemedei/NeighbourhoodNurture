@@ -30,21 +30,28 @@ const Project = () => {
 
     return (
         <section className='project-page'>
-            <h2>{project.title}</h2>
             <img src={project.image} />
-            <h3>{formattedDate}</h3>
-            <p>{project.description}</p>
-            <h3>Pledges:</h3>
-            <ul>
-                {project.pledges.map((pledgeData, i) => {
-                    return (
-                        <li key={i}>
-                            {pledgeData.amount} from {pledgeData.supporter}
-                        </li>
-                    );
-                })}
-            </ul>
-            <PledgeForm projectId={project.id} />
+            <section className='pledges'>
+                <div className='data'>
+                    <h2>{project.title}</h2>
+                    <h3>{formattedDate}</h3>
+                    <p>{project.description}</p>
+                    <div>
+                        <h3>Pledges:</h3>
+                        <ul>
+                            {project.pledges?.map((pledgeData, i) => {
+                                return (
+                                    <li key={i}>
+                                        ${pledgeData.amount} from{' '}
+                                        {pledgeData.supporter}
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </div>
+                </div>
+                <PledgeForm projectId={project.id} />
+            </section>
         </section>
     );
 };
