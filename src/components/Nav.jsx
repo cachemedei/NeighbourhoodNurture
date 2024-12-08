@@ -1,14 +1,19 @@
 import './styles/Nav.css';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 import NurtureLogo from '/images/logo-green.png';
 
 const Nav = () => {
     const { auth, setAuth } = useAuth();
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         window.localStorage.removeItem('token');
-        setAuth({ token: null });
+        window.localStorage.removeItem('user');
+        window.localStorage.removeItem('username');
+        setAuth({ token: null, user: '', username: '' });
+        navigate('/');
+        navigate(0);
     };
 
     return (
@@ -19,11 +24,10 @@ const Nav = () => {
                     <Link to='/'>Home</Link>
                     {auth.token ? (
                         <>
-                        
-                        <Link to='/' onClick={handleLogout}>
-                            Log Out
-                        </Link>
-                        <Link to='/account'>Account</Link>
+                            <Link to='/account'>Account</Link>
+                            <Link to='/' onClick={handleLogout}>
+                                Log Out
+                            </Link>
                         </>
                     ) : (
                         <>

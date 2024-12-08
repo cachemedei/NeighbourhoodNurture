@@ -6,8 +6,7 @@ import { useAuth } from '../hooks/use-auth';
 
 const Home = () => {
     const { projects, isLoading } = useProjects();
-    const {auth, setAuth} = useAuth()
-    console.log(auth)
+    const { auth } = useAuth();
 
     if (isLoading) {
         return <p className='loader'>Loading ...</p>;

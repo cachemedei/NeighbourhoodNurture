@@ -48,7 +48,7 @@ const LoginForm = () => {
                     setAuth({
                         token: response.token,
                         username: result.data.username,
-                        id: response.user_id,
+                        user: response.user_id,
                     })
                     navigate('/');
                 }

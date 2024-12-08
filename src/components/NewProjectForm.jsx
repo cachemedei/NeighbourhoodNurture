@@ -10,7 +10,7 @@ import postNewProject from '../api/post-project';
 
 const NewProjectForm = () => {
     const navigate = useNavigate();
-    const { auth, setAuth } = useAuth();
+    const { auth } = useAuth();
 
     const [projectDetails, setProjectDetails] = useState({
         title: '',
@@ -77,7 +77,6 @@ const NewProjectForm = () => {
         <section className='new-project-form'>
             <h1>Create Your Own Project</h1>
             <form onSubmit={handleSubmit}>
-
                 {/* title */}
                 <div className='input-container'>
                     <label htmlFor='title'>Project Title:</label>
@@ -118,6 +117,9 @@ const NewProjectForm = () => {
                         id='image'
                         type='url'
                     />
+                    <p>
+                        https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png
+                    </p>
                 </div>
 
                 <button type='submit'>Create Project</button>

@@ -1,18 +1,29 @@
-import OwnedPledges from "../components/OwnedPledges"
-import OwnedProjects from "../components/OwnedProjects"
+import './styles/Account.css'
 
-import { useAuth } from "../hooks/use-auth"
-
+import { Link } from 'react-router-dom';
+import { useAuth } from '../hooks/use-auth';
 
 const Account = () => {
-  const user = useAuth()
-  //saved user_id in auth object so account can display projects and pledges associated with that users id
+    const { auth } = useAuth();
+    const username = auth.username
 
-  return (
-    <div>
-        <OwnedProjects user={user} />
-        <OwnedPledges user={user} />
-    </div>
-  )
-}
-export default Account
+    return (
+        <section className='account'>
+            <h1>Hey there, {username}!</h1>
+            <p>
+                ** note: plans to make this a drop down menu when account link
+                is clicked/hovered over **
+            </p>
+            <div className='links-container'>
+                <Link to='/' className='link'>
+                    Profile
+                </Link>
+                <Link to='/activity' className='link'>
+                    Activity
+                </Link>
+                <Link to='/newproject' className='link'>Create Project</Link>
+            </div>
+        </section>
+    );
+};
+export default Account;

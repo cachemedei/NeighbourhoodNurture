@@ -3,16 +3,15 @@ import './styles/PledgeForm.css'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
-import { Link, useParams } from 'react-router-dom';
 import postPledge from '../api/post-pledge';
 
 const PledgeForm = ({ projectId }) => {
     const navigate = useNavigate();
 
-    const { auth, setAuth } = useAuth();
+    const { auth } = useAuth();
 
     const [pledge, setPledge] = useState({
-        supporter: auth.userId,
+        supporter: auth.user,
         amount: '',
         comment: '',
         project: projectId,
@@ -26,7 +25,7 @@ const PledgeForm = ({ projectId }) => {
         }));
     };
 
-    const handleSubmitPledge = (e) => {
+    const handleSubmitPledge = async (e) => {
         e.preventDefault();
         console.log(pledge);
         if (
@@ -40,8 +39,10 @@ const PledgeForm = ({ projectId }) => {
                 pledge.amount,
                 pledge.comment,
                 pledge.project,
-                auth.token
+                auth.token,
+                auth.username,
             );
+            navigate('/')
         }
     };
 

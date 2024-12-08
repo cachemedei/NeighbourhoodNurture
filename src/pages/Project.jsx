@@ -1,5 +1,5 @@
 import './styles/Project.css';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import useProject from '../hooks/use-project';
 import { useAuth } from '../hooks/use-auth';
 import PledgeForm from '../components/PledgeForm';
