@@ -16,6 +16,7 @@ const Home = () => {
         <>
             {/* Hero Section */}
             <section className='hero'>
+                <h1>hello?</h1>
                 <h1 className='title'>
                     Start your own project here at{' '}
                     <span className='name'>NeighbourhoodNuture</span>
