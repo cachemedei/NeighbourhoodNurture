@@ -1,3 +1,25 @@
 .owned-projects {
-    width: 500px;
+    margin-bottom: 20px;
+}
+
+.owned-projects .list {
+    display: flex;
+    flex-direction: column;
+}
+
+.owned-projects li {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin-top: 30px;
+}
+
+.owned-projects img {
+    width: 300px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.delete {
+    text-align: right;
 }

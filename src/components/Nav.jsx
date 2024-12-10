@@ -1,9 +1,16 @@
 import './styles/Nav.css';
+
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
-import NurtureLogo from '/images/logo-green.png';
+
+import nurtureLogo from '/images/logo-green.png';
+import { useState } from 'react';
 
 const Nav = () => {
+    //mobile nav menu
+    const [nav, setNav] = useState(false)
+    const handleClick = () => setNav(!nav)
+
     const { auth, setAuth } = useAuth();
     const navigate = useNavigate();
 
@@ -19,7 +26,9 @@ const Nav = () => {
     return (
         <>
             <nav>
-                <img src={NurtureLogo} alt='' />
+                <Link to='/'>
+                    <img src={nurtureLogo} alt='' />
+                </Link>
                 <div className='nav-links'>
                     <Link to='/'>Home</Link>
                     {auth.token ? (

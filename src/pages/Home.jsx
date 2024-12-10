@@ -1,8 +1,12 @@
 import './styles/Home.css';
-import useProjects from '../hooks/use-projects';
-import ProjectCard from '../components/ProjectCard';
+
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
+
+import HeroImg from '/images/img3.jpg';
+import useProjects from '../hooks/use-projects';
+import ProjectCard from '../components/ProjectCard';
+import Footer from '../components/Footer';
 
 const Home = () => {
     const { projects, isLoading } = useProjects();
@@ -14,9 +18,10 @@ const Home = () => {
 
     return (
         <>
+            <img className='hero-img' src={HeroImg} alt='' />
+
             {/* Hero Section */}
             <section className='hero'>
-                <h1>hello?</h1>
                 <h1 className='title'>
                     Start your own project here at{' '}
                     <span className='name'>NeighbourhoodNuture</span>
@@ -38,7 +43,9 @@ const Home = () => {
 
             {/* Projects Section */}
             <section className='projects'>
-                <h1>What's happening on NeighbourhoodNuture</h1>
+                <h1 className='title'>
+                    What's happening on NeighbourhoodNuture
+                </h1>
                 <div className='projects-container'>
                     {projects.map((projectData, i) => {
                         return (
@@ -47,6 +54,7 @@ const Home = () => {
                     })}
                 </div>
             </section>
+            <Footer />
         </>
     );
 };

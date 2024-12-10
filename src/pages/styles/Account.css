@@ -14,3 +14,11 @@
 .account .link {
     font-size: 20px;
 }
+
+.activity {
+    padding: 50px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

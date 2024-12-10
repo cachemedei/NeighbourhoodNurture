@@ -23,13 +23,13 @@ const OwnedPledges = () => {
 
     return (
         <div>
-            <h3>My Pledges</h3>
+            <h1>My Pledges</h1>
             <ul>
               {usersPledges.map((pledge, i) => (
                 <li key={i}>{pledge.amount}</li>
               ))}
             </ul>
-            <p>In total you've pledged: not sure yet :(</p>
+            <p>In total you've pledged: lol i dont know yet</p>
         </div>
     );
 };

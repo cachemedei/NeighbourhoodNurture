@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+:root {
+    scrollbar-width: none;
+}
+
 *,
 *::before,
 *::after {
@@ -18,10 +22,10 @@ body {
     color: #ebe5e5;
 }
 
-img {
+/* img {
     display: inline-block;
     max-width: 100%;
-}
+} */
 
 input,
 button,
@@ -38,7 +42,7 @@ button {
     padding: 8px 12px;
     font-weight: 500;
     border-radius: 5px;
-    box-shadow: 1px 1px 8px #425e2f;
+    box-shadow: 1px 1px 8px #1d2616;
 }
 
 a {

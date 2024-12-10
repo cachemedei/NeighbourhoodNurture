@@ -14,9 +14,9 @@
 }
 
 .project-page .pledges {
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
+    width: 80%;
+    margin: 0 auto;
+    height: 800px;
 }
 
 .pledges .data {

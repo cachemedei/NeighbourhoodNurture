@@ -34,7 +34,7 @@ const Project = () => {
             <section className='pledges'>
                 <div className='data'>
                     <h2>{project.title}</h2>
-                    <h3>{formattedDate}</h3>
+                    <h3>Launched {formattedDate}</h3>
                     <p>{project.description}</p>
                     <div>
                         <h3>Pledges:</h3>
