@@ -1,26 +1,51 @@
 .login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 500px;
-    height: 500px;
-    margin: 0 auto;
+    width: 100vw;
+    min-height: 75vh;
+}
+
+.login h1 {
+    font-size: 20px;
+    text-align: center;
+    margin: 20px 0;
 }
 
 .login form {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.login .input-container {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+}
+
+.login input,
+.login textarea {
+    width: 300px;
+    margin-left: 30px;
+}
+
+.login form label {
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.login .btn-container {
+    width: 100%;
+    display: flex;
     align-items: center;
 }
 
 .login button {
-    margin-top: 50px;
+    margin: 20px auto;
+    padding: 12px;
 }
 
-.login input {
-    border-radius: 8px;
+.login p {
+    text-align: center;
 }
 
-.login form * {
-    padding: 15px;
+.login .signup-link {
+    font-weight: 700;
 }

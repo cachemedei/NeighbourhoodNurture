@@ -7,20 +7,21 @@ import HeroImg from '/images/img3.jpg';
 import useProjects from '../hooks/use-projects';
 import ProjectCard from '../components/ProjectCard';
 import Footer from '../components/Footer';
+import Loader from '../components/Loader';
 
 const Home = () => {
     const { projects, isLoading } = useProjects();
     const { auth } = useAuth();
 
     if (isLoading) {
-        return <p className='loader'>Loading ...</p>;
+        return <Loader />;
     }
 
     return (
         <>
             <img className='hero-img' src={HeroImg} alt='' />
 
-            {/* Hero Section */}
+            {/* hero */}
             <section className='hero'>
                 <h1 className='title'>
                     Start your own project here at{' '}
@@ -41,7 +42,7 @@ const Home = () => {
                 </button>
             </section>
 
-            {/* Projects Section */}
+            {/* projects */}
             <section className='projects'>
                 <h1 className='title'>
                     What's happening on NeighbourhoodNuture
@@ -54,7 +55,6 @@ const Home = () => {
                     })}
                 </div>
             </section>
-            <Footer />
         </>
     );
 };

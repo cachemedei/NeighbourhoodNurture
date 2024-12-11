@@ -1,0 +1,42 @@
+.edit-profile {
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.edit-profile h1 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.edit-profile form {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.edit-profile .input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.edit-profile input {
+    width: 250px;
+    margin-left: 40px;
+    padding: 10px;
+}
+
+.edit-profile form label {
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.edit-profile .btn-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+}
+
+.edit-profile button {
+    min-width: 90px;
+    padding: 8px;
+}

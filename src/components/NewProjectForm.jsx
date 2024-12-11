@@ -29,9 +29,7 @@ const NewProjectForm = () => {
         goal: z
             .string()
             .min(1, { message: 'Please provide a goal for your project' }),
-        image: z
-            .string()
-            .url()
+        image: z.string().url(),
     });
 
     const handleChange = (e) => {
@@ -43,62 +41,59 @@ const NewProjectForm = () => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        const result = createProjectSchema.safeParse(projectDetails)
+        e.preventDefault();
+        const result = createProjectSchema.safeParse(projectDetails);
 
         if (!result.success) {
-            const error = result.error.errors?.[0]
+            const error = result.error.errors?.[0];
             if (error) {
-                alert(error.message)
+                alert(error.message);
             }
-            return
+            return;
         } else {
             try {
                 auth.token
                     ? await postNewProject(
-                        result.data.title,
-                        result.data.description,
-                        result.data.goal,
-                        result.data.image,
-                        auth.token
-                    )
-                    : alert('Please log in to create a project')
-                    navigate('/');
+                          result.data.title,
+                          result.data.description,
+                          result.data.goal,
+                          result.data.image,
+                          auth.token
+                      )
+                    : alert('Please log in to create a project');
+                navigate('/');
             } catch (error) {
-                console.error('Error creating project: ', error)
+                console.error('Error creating project: ', error);
             }
         }
-    }
-
-//image url:
-//https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png
+    };
 
     return (
-        <section className='new-project-form'>
+        <section className='new-project'>
             <h1>Create Your Own Project</h1>
             <form onSubmit={handleSubmit}>
                 {/* title */}
                 <div className='input-container'>
-                    <label htmlFor='title'>Project Title:</label>
+                    <label htmlFor='title'>Project Title</label>
                     <input onChange={handleChange} id='title' type='text' />
                 </div>
 
                 {/* description */}
                 <div className='input-container'>
-                    <label htmlFor='description'>Description:</label>
+                    <label htmlFor='description'>Description</label>
                     <textarea
                         onChange={handleChange}
                         name='description'
                         id='description'
                         value={projectDetails.description}
-                        rows='4'
+                        rows='8'
                         placeholder='Please enter a detailed description of your project'
                     ></textarea>
                 </div>
 
                 {/* goal */}
                 <div className='input-container'>
-                    <label htmlFor='goal'>Goal:</label>
+                    <label htmlFor='goal'>Goal</label>
                     <input
                         onChange={handleChange}
                         type='number'
@@ -110,23 +105,23 @@ const NewProjectForm = () => {
 
                 {/* image */}
                 <div className='input-container'>
-                    <label htmlFor='image'>Image:</label>
+                    <label htmlFor='image'>Image</label>
                     <input
                         onChange={handleChange}
                         value={projectDetails.image}
                         id='image'
                         type='url'
+                        placeholder='URL to an image'
                     />
-                    <p>
-                        https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png
-                    </p>
                 </div>
-
-                <button type='submit'>Create Project</button>
+                <div className='btn-container'>
+                    <button type='submit'>Create Project</button>
+                </div>
             </form>
+            <p>
+                https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png
+            </p>
         </section>
     );
 };
 export default NewProjectForm;
-
-

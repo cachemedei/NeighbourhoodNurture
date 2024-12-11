@@ -1,37 +1,50 @@
 .signup {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 350px;
-    height: 500px;
-    margin: 0 auto;
+    width: 100vw;
+    height: 75vh;
+}
+
+.signup h1 {
+    font-size: 20px;
+    text-align: center;
+    margin: 20px 0;
 }
 
 .signup form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+    width: fit-content;
+    margin: 0 auto;
 }
 
-.signup button {
-    margin-top: 40px;
+.signup .input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .signup input {
-    border-radius: 8px;
+    width: 300px;
+    margin-left: 30px;
 }
 
-.signup form * {
-    padding: 10px;
+.signup form label {
+    font-weight: 400;
+    font-size: 16px;
 }
 
-.signup .form-container {
-    display: flex;
-    justify-content: space-between;
+.signup .btn-container {
     width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.signup button {
+    margin: 20px auto;
+    padding: 12px;
 }
 
 .signup p {
-    margin-top: 10px;
+    text-align: center;
+}
+
+.signup .login-link {
+    font-weight: 700;
 }

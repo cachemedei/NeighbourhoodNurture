@@ -1,27 +1,30 @@
-import './styles/Account.css'
+import './styles/Account.css';
 
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 
+import bannerImg from '/images/footer2.jpg';
+
 const Account = () => {
     const { auth } = useAuth();
-    const username = auth.username
+    const username = auth.username;
 
     return (
         <section className='account'>
-            <h1>Hey there, {username}!</h1>
-            <p>
-                ** note: plans to make this a drop down menu when account link
-                is clicked/hovered over **
-            </p>
-            <div className='links-container'>
-                <Link to='/' className='link'>
-                    Profile
-                </Link>
-                <Link to='/activity' className='link'>
-                    Activity
-                </Link>
-                <Link to='/newproject' className='link'>Create Project</Link>
+            <img src={bannerImg} alt='' />
+            <div className='dashboard'>
+                <h1>Hey {username},</h1>
+                <div className='links-container'>
+                    <Link to='/activity' className='link'>
+                        Activity
+                    </Link>
+                    <Link to='/newproject' className='link'>
+                        Create Project
+                    </Link>
+                    <Link to='/editprofile' className='link'>
+                        Edit Profile
+                    </Link>
+                </div>
             </div>
         </section>
     );

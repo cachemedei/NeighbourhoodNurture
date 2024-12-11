@@ -1,18 +1,22 @@
-async function postLogin(username, password) {
-    const url = `${import.meta.env.VITE_API_URL}/api-token-auth/`;
+async function putUser(userId, token, fName, lName, email, username, password) {
+    const url = `${import.meta.env.VITE_API_URL}/users/${userId}/`;
     const response = await fetch(url, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
+            Authorization: `Token ${token}`,
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+            first_name: fName,
+            last_name: lName,
+            email: email,
             username: username,
             password: password,
         }),
     });
 
     if (!response.ok) {
-        const fallbackError = `Sorry! The username or password you entered was incorrect`;
+        const fallbackError = `Error trying to sign up`;
 
         const data = await response.json().catch(() => {
             throw new Error(fallbackError);
@@ -25,4 +29,4 @@ async function postLogin(username, password) {
     return await response.json();
 }
 
-export default postLogin;
+export default putUser;

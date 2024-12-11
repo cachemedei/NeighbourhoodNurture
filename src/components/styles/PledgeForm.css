@@ -1,28 +1,58 @@
-.pledge {
+.pledge-form {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 350px;
 }
 
-.pledge form {
+.pledge-form form {
     display: flex;
     flex-direction: column;
 }
 
-.pledge button {
-    margin-right: 5px;
+.pledge-form .amount-options {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin-bottom: 15px;
+
+    @media screen and (max-width: 600px) {
+        flex-direction: column;
+        align-items: center;
+        height: 300px;
+        margin-bottom: 0;
+    }
 }
 
-.pledge .other {
+.pledge-form .amount-options button {
+    min-width: 80px;
+}
+
+.other-container {
+    text-align: right;
+    width: 80%;
+}
+
+.pledge-form .other {
     width: 100px;
     padding: 3px;
     border: 8px;
 }
 
-.pledge .comment {
-    width: 80%;
-    margin: 20px 0;
+.pledge-form .comment-label {
+    margin-top: 30px;
 }
 
-.pledge .pledge-btn {
-    width: 40%;
-    margin: 10px auto;
+.pledge-form .comment {
+    width: 80%;
+
+    @media screen and (max-width: 600px) {
+        width: 100%;
+    }
+}
+
+.pledge-form .pledge-btn {
+    width: 120px;
+    margin-top: 20px;
 }

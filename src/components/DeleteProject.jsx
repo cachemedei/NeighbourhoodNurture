@@ -9,7 +9,6 @@ const DeleteProject = ({projectId, token}) => {
     const navigate = useNavigate
 
     const handleDelete = () => {
-        console.log(projectId, token)
         deleteProject(projectId, token)
     }
 

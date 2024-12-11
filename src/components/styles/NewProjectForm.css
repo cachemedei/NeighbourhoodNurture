@@ -1,26 +1,43 @@
-.new-project-form {
+.new-project {
+    width: 100vw;
+    height: 100vh;
+}
+
+.new-project h1 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.new-project form {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.new-project .input-container {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+}
+
+.new-project input,
+.new-project textarea {
+    width: 380px;
+    margin-left: 30px;
+}
+
+.new-project form label {
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.new-project .btn-container {
+    width: 100%;
+    display: flex;
     align-items: center;
-    justify-content: space-between;
-    height: 580px;
-    margin-top: 20px;
 }
 
-.new-project-form form * {
-    padding: 10px;
-}
-
-.new-project-form form {
-    height: 500px;
-}
-
-.input-container {
-    display: flex;
-    flex-direction: column;
-    width: 450px;
-}
-
-.new-project-form textarea {
-    border-radius: 8px;
+.new-project button {
+    padding: 8px;
+    margin: 20px auto;
 }

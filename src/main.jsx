@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Account from './pages/Account';
 import Activity from './pages/Activity';
+import EditProfile from './pages/EditProfile';
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
             { path: '/login', element: <Login /> },
             { path: '/signup', element: <Signup /> },
             { path: '/account', element: <Account /> },
+            { path: '/editprofile', element: <EditProfile /> },
             { path: '/activity', element: <Activity /> },
             { path: '/newproject', element: <NewProject /> },
             { path: '/project/:id', element: <Project /> },

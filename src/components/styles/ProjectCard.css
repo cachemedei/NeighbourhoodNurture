@@ -1,0 +1,19 @@
+.project-card {
+    width: 400px;
+    height: 480px;
+    margin: 0 10px;
+}
+
+.project-card .card-title {
+    max-width: 250px;
+}
+
+.project-card .description {
+    max-width: 280px;
+    margin: 5px 16px;
+}
+
+.project-card img {
+    width: 350px;
+    height: 220px;
+}

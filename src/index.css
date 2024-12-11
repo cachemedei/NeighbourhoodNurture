@@ -39,7 +39,6 @@ button {
     background-color: #425e2f;
     color: #ebe5e5;
     border: none;
-    padding: 8px 12px;
     font-weight: 500;
     border-radius: 5px;
     box-shadow: 1px 1px 8px #1d2616;
@@ -52,4 +51,13 @@ a {
 
 ul {
     list-style: none;
+}
+
+form * {
+    padding: 5px;
+}
+
+input, textarea {
+    border-radius: 4px;
+    padding: 8px;
 }

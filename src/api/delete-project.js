@@ -5,11 +5,7 @@ async function deleteProject(projectId, token) {
         method: 'DELETE',
         headers: {
             Authorization: `Token ${token}`,
-            'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            id: projectId,
-        })
     });
 
     if (!response.ok) {
@@ -22,8 +18,6 @@ async function deleteProject(projectId, token) {
         const errorMessage = data?.detail ?? fallbackError;
         throw new Error(errorMessage);
     }
-
-    return await response.json();
 }
 
 export default deleteProject;

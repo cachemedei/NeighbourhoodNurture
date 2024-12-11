@@ -1,27 +1,46 @@
-.loader {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
-}
-
 .project-page {
     display: flex;
     flex-direction: column;
-    margin: 25px auto;
-    max-width: 900px
-}
-
-.project-page .pledges {
-    width: 80%;
     margin: 0 auto;
-    height: 800px;
+    max-width: 900px;
+    min-height: 100vh;
 }
 
-.pledges .data {
+.project-page img {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.project-info {
+    width: 70%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    min-height: 250px
+    justify-content: space-evenly;
+    min-height: 300px;
+}
+
+.pledge-data {
+    width: 70%;
+    margin: 0 auto 60px auto;
+}
+
+.pledge {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.pledge button {
+    padding: 12px;
+}
+
+.close-pledge {
+    position: relative;
+    width: 100%;
+}
+
+.close-pledge .icon {
+    text-align: end;
+    position: absolute;
+    right: 0;
 }
