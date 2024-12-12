@@ -73,7 +73,7 @@ const LoginForm = () => {
             <form onSubmit={handleSubmit}>
                 <div className='input-container'>
                     <label htmlFor='username'>Username</label>
-                    <input onChange={handleChange} type='text' id='username' />
+                    <input onChange={handleChange} type='text' id='username' autoCapitalize='none' />
                 </div>
                 <div className='input-container'>
                     <label htmlFor='password'>Password</label>
