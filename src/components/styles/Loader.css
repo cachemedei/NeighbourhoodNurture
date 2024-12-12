@@ -1,7 +1,13 @@
-.loader {
+.lrg-loader {
     display: flex;
+    height: 100vh;
+    width: 100vw;
     align-items: center;
     justify-content: center;
-    width: 100vw;
-    height: 100vh;
+}
+
+.sml-loader {
+    width: 100%;
+    text-align: center;
+    padding-top: 100px;
 }

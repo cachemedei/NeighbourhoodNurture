@@ -1,9 +1,9 @@
 import './styles/Account.css';
 
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 
-import bannerImg from '/images/footer2.jpg';
+import accountImg from '/images/accountimg.webp'
 
 const Account = () => {
     const { auth } = useAuth();
@@ -11,20 +11,22 @@ const Account = () => {
 
     return (
         <section className='account'>
-            <img src={bannerImg} alt='' />
+            <img src={accountImg} alt='' />
+
+            <h1 className='title'>Hey {username},</h1>
             <div className='dashboard'>
-                <h1>Hey {username},</h1>
                 <div className='links-container'>
-                    <Link to='/activity' className='link'>
+                    <Link to='/account' className='link'>
                         Activity
+                    </Link>
+                    <Link to='/account/editprofile' className='link'>
+                        Edit Profile
                     </Link>
                     <Link to='/newproject' className='link'>
                         Create Project
                     </Link>
-                    <Link to='/editprofile' className='link'>
-                        Edit Profile
-                    </Link>
                 </div>
+                <Outlet />
             </div>
         </section>
     );

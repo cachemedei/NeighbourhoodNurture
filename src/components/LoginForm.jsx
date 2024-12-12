@@ -66,7 +66,7 @@ const LoginForm = () => {
     return (
         <section className='login'>
             {/* title */}
-            <h1>Welcome back</h1>
+            <h1 className='title'>Welcome back</h1>
             <Toaster position='bottom-center' />
 
             {/* login form */}

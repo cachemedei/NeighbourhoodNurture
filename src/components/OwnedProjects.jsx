@@ -2,16 +2,19 @@ import './styles/OwnedProjects.css';
 
 import { useAuth } from '../hooks/use-auth';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { FaChevronRight, FaChevronDown } from 'react-icons/fa6';
 
 import useProjects from '../hooks/use-projects';
 import DeleteProject from './DeleteProject';
 
 const OwnedProjects = () => {
-    const { auth } = useAuth();
-    const userId = auth.user;
-
     const { projects } = useProjects();
+    const { auth, setAuth } = useAuth();
     const [usersProjects, setUsersProjects] = useState([]);
+    const userId = auth.user;
+    const [showData, setShowData] = useState(false);
+    const handleShowData = () => setShowData(!showData);
 
     useEffect(() => {
         let list = [];
@@ -24,21 +27,44 @@ const OwnedProjects = () => {
     }, [projects]);
 
     return (
-        <div className='owned-projects'>
-            <h1>My Projects</h1>
-            <ul className='list'>
-                {usersProjects.map((project, i) => (
-                    <li key={i}>
-                        <h3>{project.title}</h3>
-                        <img src={project.image} alt="" />
-                        <DeleteProject
-                            projectId={project.id}
-                            token={auth.token}
-                        />
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <section className='owned-projects'>
+            <h1 onClick={handleShowData} className='title'>
+                my projects
+                {!showData ? (
+                    <FaChevronRight size={15} />
+                ) : (
+                    <FaChevronDown size={15} />
+                )}
+            </h1>
+            {showData ? (
+                <section className='list'>
+                    {usersProjects.map((project, i) => (
+                        <article className='item' key={i}>
+                            <h3 className='subtitle'>{project.title}</h3>
+                            <Link to={`/project/${project.id}`}>
+                                <img
+                                    className='image'
+                                    src={project.image}
+                                    alt=''
+                                />
+                            </Link>
+                            <div className='project-btns'>
+                                <DeleteProject
+                                    projectId={project.id}
+                                    token={auth.token}
+                                />
+                                <Link
+                                    className='edit-btn'
+                                    to='/account/editproject'
+                                >
+                                    Edit
+                                </Link>
+                            </div>
+                        </article>
+                    ))}
+                </section>
+            ) : null}
+        </section>
     );
 };
 export default OwnedProjects;

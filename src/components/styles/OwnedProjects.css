@@ -1,10 +1,36 @@
 .owned-projects {
-    margin-bottom: 20px;
+    height: fit-content;
 }
 
 .owned-projects .list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 60px;
+    row-gap: 150px;
+
+    @media screen and (max-width: 1500px) {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 120px;
+    }
+
+    @media screen and (max-width: 1200px) {
+        grid-template-columns: repeat(1, 1fr);
+        row-gap: 120px;
+    }
+}
+
+.owned-projects .item {
+    @media screen and (max-width: 720px) {
+        width: fit-content;
+    }
+}
+
+.owned-projects .title {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    font-weight: 200;
+    cursor: pointer;
 }
 
 .owned-projects li {
@@ -14,12 +40,41 @@
     margin-top: 30px;
 }
 
-.owned-projects img {
-    width: 300px;
-    height: 100%;
-    object-fit: cover;
+.owned-projects .subtitle {
+    font-weight: 400;
+    margin-bottom: 10px;
 }
 
-.delete {
-    text-align: right;
+.owned-projects .image {
+    width: 300px;
+    height: 100%;
+    margin-left: 30px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 2px;
+
+    @media screen and (max-width: 1200px) {
+        width: 400px;
+    }
+}
+
+.project-btns {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 15px;
+}
+
+.edit-btn,
+.del-btn {
+    border: 2px solid rgb(235, 229, 229, 0.5);
+    border-radius: 2px;
+    box-shadow: 1px 1px 8px #1d2616;
+    padding: 5px 8px;
+    transition: transform 0.2s ease-in;
+}
+.edit-btn:hover,
+.del-btn:hover {
+    transform: scale(1.05);
 }

@@ -10,7 +10,7 @@ footer img {
     overflow:-moz-hidden-unscrollable
 }
 
-footer .links {
+footer .footer-links {
     display: flex;
     width: 100%;
     justify-content: space-around;

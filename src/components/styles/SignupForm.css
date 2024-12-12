@@ -1,9 +1,9 @@
 .signup {
     width: 100vw;
-    height: 75vh;
+    min-height: 100vh;
 }
 
-.signup h1 {
+.signup .title {
     font-size: 20px;
     text-align: center;
     margin: 20px 0;

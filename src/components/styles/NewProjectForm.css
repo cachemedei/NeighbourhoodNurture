@@ -1,9 +1,9 @@
 .new-project {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
 }
 
-.new-project h1 {
+.new-project .title {
     font-size: 20px;
     text-align: center;
     margin-bottom: 20px;

@@ -1,0 +1,18 @@
+.owned-pledges {
+    height: fit-content;
+}
+
+.owned-pledges .title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 200;
+    cursor: pointer;
+}
+
+.owned-pledges .list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}

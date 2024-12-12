@@ -1,7 +1,7 @@
 .project-page {
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    margin: 0 auto 50px auto;
     max-width: 900px;
     min-height: 100vh;
 }
@@ -17,7 +17,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    min-height: 300px;
+    height: fit-content;
+    gap: 20px;
 }
 
 .pledge-data {

@@ -77,7 +77,7 @@ const SignupForm = () => {
     return (
         <section className='signup'>
             {/* title */}
-            <h1>Sign Up</h1>
+            <h1 className='title'>Sign Up</h1>
 
             {/* signup form */}
             <form onSubmit={handleSubmit}>

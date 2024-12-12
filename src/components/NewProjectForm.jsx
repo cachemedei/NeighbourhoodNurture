@@ -70,7 +70,7 @@ const NewProjectForm = () => {
 
     return (
         <section className='new-project'>
-            <h1>Create Your Own Project</h1>
+            <h1 className='title'>Create Your Own Project</h1>
             <form onSubmit={handleSubmit}>
                 {/* title */}
                 <div className='input-container'>

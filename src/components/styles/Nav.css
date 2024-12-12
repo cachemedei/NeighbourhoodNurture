@@ -52,7 +52,7 @@ nav .link:hover {
     .nav .desktop-menu {
         display: flex;
         justify-content: space-around;
-        width: 50%;
+        width: 55%;
     }
 
     .hamburger {

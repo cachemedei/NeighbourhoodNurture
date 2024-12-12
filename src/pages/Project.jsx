@@ -1,13 +1,12 @@
 import './styles/Project.css';
 
 import { useParams } from 'react-router-dom';
-import { useAuth } from '../hooks/use-auth';
-
-import useProject from '../hooks/use-project';
-import Loader from '../components/Loader';
-import PledgeForm from '../components/PledgeForm';
 import { useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
+
+import useProject from '../hooks/use-project';
+import PledgeForm from '../components/PledgeForm';
+import LrgLoader from '../components/LrgLoader';
 
 const Project = () => {
     const { id } = useParams();
@@ -18,7 +17,7 @@ const Project = () => {
 
     //loader
     if (isLoading) {
-        return <Loader />;
+        return <LrgLoader />;
     }
     if (error) {
         return <p>{error.message}</p>;
@@ -55,7 +54,7 @@ const Project = () => {
                     {project.pledges?.map((pledgeData, i) => {
                         return (
                             <li key={i}>
-                                ${pledgeData.amount} from {pledgeData.supporter}
+                                ${pledgeData.amount} from {pledgeData.anonymous === true ? 'anonymous' : pledgeData.supporter}
                             </li>
                         );
                     })}
@@ -65,12 +64,14 @@ const Project = () => {
             {/* pledge form */}
             <section className='pledge'>
                 {!showPledgeForm ? (
-                    <button className='btn' onClick={handlePledge}>Pledge Now</button>
+                    <button className='btn' onClick={handlePledge}>
+                        Pledge Now
+                    </button>
                 ) : (
                     <div className='close-pledge'>
                         <IoMdClose
-                        size={25}
-                        className='icon'
+                            size={25}
+                            className='icon'
                             onClick={handlePledge}
                         />
                     </div>

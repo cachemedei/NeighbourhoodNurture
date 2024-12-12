@@ -23,7 +23,6 @@ const Nav = () => {
         window.localStorage.removeItem('username');
         setAuth({ token: null, user: '', username: '' });
         setShowNav(false)
-        navigate('/');
     };
 
     return (
@@ -37,6 +36,9 @@ const Nav = () => {
                 <section className='desktop-menu'>
                     <Link className='link' to='/'>
                         Home
+                    </Link>
+                    <Link className='link' to='/about'>
+                        About
                     </Link>
                     {auth.token ? (
                         <>

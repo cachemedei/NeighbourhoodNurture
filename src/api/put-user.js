@@ -1,5 +1,12 @@
-async function putUser(userId, token, fName, lName, email, username, password) {
-    const url = `${import.meta.env.VITE_API_URL}/users/${userId}/`;
+async function putUser(username, password, fname, lname, email, user, token) {
+    const url = `${import.meta.env.VITE_API_URL}/users/${user.id}/`;
+
+    const newUsername = username ? username : user.email;
+    const newPassword = password ? password : user.password;
+    const newFirstName = fname ? fname : user.first_name;
+    const newLastName = lname ? lname : user.last_name;
+    const newEmail = email ? email : user.email;
+
     const response = await fetch(url, {
         method: 'PUT',
         headers: {
@@ -7,16 +14,16 @@ async function putUser(userId, token, fName, lName, email, username, password) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            first_name: fName,
-            last_name: lName,
-            email: email,
-            username: username,
-            password: password,
+            username: newUsername,
+            password: newPassword,
+            first_name: newFirstName,
+            last_name: newLastName,
+            email: newEmail,
         }),
     });
 
     if (!response.ok) {
-        const fallbackError = `Error trying to sign up`;
+        const fallbackError = `Error trying to edit details`;
 
         const data = await response.json().catch(() => {
             throw new Error(fallbackError);

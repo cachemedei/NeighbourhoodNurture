@@ -1,22 +1,23 @@
-import './styles/PledgeForm.css'
+import './styles/PledgeForm.css';
 
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 
 import postPledge from '../api/post-pledge';
 
 const PledgeForm = ({ projectId }) => {
     const navigate = useNavigate();
-    const [other, setOther] = useState(false)
-
     const { auth } = useAuth();
+
+    const [other, setOther] = useState(false);
 
     const [pledge, setPledge] = useState({
         supporter: auth.user,
         amount: '',
         comment: '',
         project: projectId,
+        anonymous: true,
     });
 
     const handleChange = (e) => {
@@ -34,21 +35,21 @@ const PledgeForm = ({ projectId }) => {
             pledge.supporter &&
             pledge.amount &&
             pledge.comment &&
-            pledge.project
+            pledge.project &&
+            pledge.anonymous
         ) {
             postPledge(
                 pledge.supporter,
                 pledge.amount,
                 pledge.comment,
                 pledge.project,
+                pledge.anonymous,
                 auth.token,
-                auth.username,
+                auth.username
             );
-            navigate('/')
+            navigate('/');
         }
     };
-
-    // navigate(0)
 
     return (
         <section className='pledge-form'>
@@ -62,18 +63,16 @@ const PledgeForm = ({ projectId }) => {
                     <button value='10' id='amount' onClick={handleChange}>
                         $10
                     </button>
+                    <button value='20' id='amount' onClick={handleChange}>
+                        $20
+                    </button>
                     <button value='50' id='amount' onClick={handleChange}>
                         $50
                     </button>
                     <button value='100' id='amount' onClick={handleChange}>
                         $100
                     </button>
-                    <button onClick={() => setOther(!other)}>Other</button>
-                    <p>{pledge.amount}</p>
-                </div>
-                {other ? (
-                    <div className='other-container'>
-                        <label htmlFor='amount'>Other: </label>
+                    {other ? (
                         <input
                             onChange={handleChange}
                             type='number'
@@ -81,17 +80,42 @@ const PledgeForm = ({ projectId }) => {
                             placeholder='$'
                             className='other'
                         />
-                    </div>
-                ) : null}
+                    ) : (
+                        <button onClick={() => setOther(!other)}>Other</button>
+                    )}
+                </div>
+                <p className='pledge-amount'>${pledge.amount}</p>
 
-                <label htmlFor='comment' className='comment-label'>Comment: </label>
+                <label htmlFor='comment' className='comment-label'>
+                    Comment:{' '}
+                </label>
                 <textarea
                     className='comment'
                     name='comment'
                     id='comment'
-                    rows={4}
+                    rows={3}
                     onChange={handleChange}
                 ></textarea>
+                {auth.token ? (
+                    <label className='anonymous' htmlFor='anonymous'>
+                        Pledge anonymously?
+                        <select
+                            className='selector'
+                            id='anonymous'
+                            onChange={handleChange}
+                        >
+                            <option value='false'>No</option>
+                            <option value='true'>Yes</option>
+                        </select>
+                    </label>
+                ) : (
+                    <p>
+                        If you don't want your pledge to be anonymous
+                        <Link to='/login'>log in</Link>
+                        or
+                        <Link to='/signup'>create an account</Link>!
+                    </p>
+                )}
                 <button className='pledge-btn'>Pledge</button>
             </form>
         </section>

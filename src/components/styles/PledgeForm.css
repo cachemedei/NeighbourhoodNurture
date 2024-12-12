@@ -12,15 +12,13 @@
 }
 
 .pledge-form .amount-options {
-    display: flex;
-    width: 100%;
-    justify-content: space-evenly;
-    margin-bottom: 15px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: 20px;
+    row-gap: 20px;
 
-    @media screen and (max-width: 600px) {
-        flex-direction: column;
-        align-items: center;
-        height: 300px;
+    @media screen and (max-width: 720px) {
+        grid-template-columns: repeat(3, 1fr);
         margin-bottom: 0;
     }
 }
@@ -29,15 +27,16 @@
     min-width: 80px;
 }
 
-.other-container {
-    text-align: right;
-    width: 80%;
+.pledge-form .other {
+    width: 120px;
+    padding: 5px 15px;
+    border-radius: 4px;
+    font-weight: 600;
 }
 
-.pledge-form .other {
-    width: 100px;
-    padding: 3px;
-    border: 8px;
+.other::-webkit-outer-spin-button,
+.other::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }
 
 .pledge-form .comment-label {
@@ -50,6 +49,24 @@
     @media screen and (max-width: 600px) {
         width: 100%;
     }
+}
+
+.pledge-amount {
+    font-size: 24px;
+}
+
+.anonymous {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.anonymous .selector {
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 18px;
 }
 
 .pledge-form .pledge-btn {
