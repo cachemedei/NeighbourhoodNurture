@@ -3,7 +3,7 @@ import './styles/Account.css';
 import { Link, Outlet } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 
-import accountImg from '/images/accountimg.webp'
+import accountImg from '/images/accountimg.webp';
 
 const Account = () => {
     const { auth } = useAuth();

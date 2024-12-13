@@ -5,8 +5,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 
 import postPledge from '../api/post-pledge';
+import toast, { Toaster } from 'react-hot-toast';
 
 const PledgeForm = ({ projectId }) => {
+    const notify = () => toast('Thank you for your pledge!');
     const navigate = useNavigate();
     const { auth } = useAuth();
 
@@ -30,7 +32,6 @@ const PledgeForm = ({ projectId }) => {
 
     const handleSubmitPledge = async (e) => {
         e.preventDefault();
-        console.log(pledge);
         if (
             pledge.supporter &&
             pledge.amount &&
@@ -39,20 +40,24 @@ const PledgeForm = ({ projectId }) => {
             pledge.anonymous
         ) {
             postPledge(
+                auth.token,
                 pledge.supporter,
                 pledge.amount,
                 pledge.comment,
                 pledge.project,
                 pledge.anonymous,
-                auth.token,
-                auth.username
-            );
-            navigate('/');
+            ).then(() => {
+                notify();
+                setTimeout(() => {
+                    navigate('/account');
+                }, 2000);
+            });
         }
     };
 
     return (
         <section className='pledge-form'>
+            <Toaster />
             <h4>How much would you like to pledge?</h4>
             <form onSubmit={handleSubmitPledge}>
                 <label htmlFor=''></label>
@@ -116,7 +121,9 @@ const PledgeForm = ({ projectId }) => {
                         <Link to='/signup'>create an account</Link>!
                     </p>
                 )}
-                <button className='pledge-btn'>Pledge</button>
+                <button className='pledge-btn'>
+                    Pledge
+                </button>
             </form>
         </section>
     );

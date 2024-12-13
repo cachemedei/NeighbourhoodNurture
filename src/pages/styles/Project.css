@@ -45,3 +45,12 @@
     position: absolute;
     right: 0;
 }
+
+.text {
+    font-size: 18px;
+    text-align: center;
+}
+
+.login-link, .signup-link {
+    font-weight: 800;
+}

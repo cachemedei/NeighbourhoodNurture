@@ -9,6 +9,7 @@ import ProjectCard from '../components/ProjectCard';
 import LrgLoader from '../components/LrgLoader';
 
 const Home = () => {
+
     const { projects, isLoading } = useProjects();
     const { auth } = useAuth();
 

@@ -1,16 +1,18 @@
 import './styles/Project.css';
 
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 
 import useProject from '../hooks/use-project';
 import PledgeForm from '../components/PledgeForm';
 import LrgLoader from '../components/LrgLoader';
+import { useAuth } from '../hooks/use-auth';
 
 const Project = () => {
     const { id } = useParams();
     const { project, isLoading, error } = useProject(id);
+    const {auth} = useAuth()
 
     const [showPledgeForm, setShowPledgeForm] = useState(false);
     const handlePledge = () => setShowPledgeForm(!showPledgeForm);
@@ -54,7 +56,7 @@ const Project = () => {
                     {project.pledges?.map((pledgeData, i) => {
                         return (
                             <li key={i}>
-                                ${pledgeData.amount} from {pledgeData.anonymous === true ? 'anonymous' : pledgeData.supporter}
+                                ${pledgeData.amount} from {pledgeData.anonymous === true ? 'anonymous' : pledgeData.supporter_name}
                             </li>
                         );
                     })}
@@ -62,22 +64,32 @@ const Project = () => {
             </section>
 
             {/* pledge form */}
+            {auth.token ? (
+
             <section className='pledge'>
-                {!showPledgeForm ? (
-                    <button className='btn' onClick={handlePledge}>
-                        Pledge Now
-                    </button>
-                ) : (
-                    <div className='close-pledge'>
-                        <IoMdClose
-                            size={25}
-                            className='icon'
-                            onClick={handlePledge}
-                        />
-                    </div>
-                )}
+                    {!showPledgeForm ? (
+                        <button className='btn' onClick={handlePledge}>
+                            Pledge Now
+                        </button>
+                    ) : (
+                        <div className='close-pledge'>
+                            <IoMdClose
+                                size={25}
+                                className='icon'
+                                onClick={handlePledge}
+                            />
+                        </div>
+                    )}
                 {showPledgeForm ? <PledgeForm projectId={project.id} /> : null}
             </section>
+            ): (
+                <p className='text'>
+                    If you would like to pledge to this project
+                    <Link className='login-link' to='/login'> log in here </Link>
+                    or
+                    <Link className='signup-link' to='signup'> create an account today!</Link>
+                </p>
+            )}
         </section>
     );
 };

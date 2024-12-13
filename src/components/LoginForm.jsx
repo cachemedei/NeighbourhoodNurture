@@ -12,8 +12,8 @@ import postLogin from '../api/post-login';
 const notify = (msg) => toast(msg);
 
 const LoginForm = () => {
-    const [error, setError] = useState('');
     const navigate = useNavigate();
+    const [error, setError] = useState('');
     const { auth, setAuth } = useAuth();
 
     const loginSchema = z.object({
@@ -40,7 +40,7 @@ const LoginForm = () => {
         if (!result.success) {
             const error = result.error.errors?.[0];
             if (error) {
-                console.log(response);
+                console.error(error);
             }
             return;
         } else {
@@ -73,7 +73,12 @@ const LoginForm = () => {
             <form onSubmit={handleSubmit}>
                 <div className='input-container'>
                     <label htmlFor='username'>Username</label>
-                    <input onChange={handleChange} type='text' id='username' autoCapitalize='none' />
+                    <input
+                        onChange={handleChange}
+                        type='text'
+                        id='username'
+                        autoCapitalize='none'
+                    />
                 </div>
                 <div className='input-container'>
                     <label htmlFor='password'>Password</label>
@@ -88,7 +93,9 @@ const LoginForm = () => {
                 </div>
                 <p>
                     Don't have an account yet?
-                    <Link className='signup-link' to='/signup'>Sign up</Link>
+                    <Link className='signup-link' to='/signup'>
+                        Sign up
+                    </Link>
                 </p>
             </form>
         </section>
