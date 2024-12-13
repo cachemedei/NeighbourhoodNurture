@@ -56,7 +56,7 @@ const Project = () => {
                     {project.pledges?.map((pledgeData, i) => {
                         return (
                             <li key={i}>
-                                ${pledgeData.amount} from {pledgeData.anonymous === true ? 'anonymous' : pledgeData.supporter_name}
+                                ${pledgeData.amount} from {pledgeData.anonymous === true ? 'anonymous' : pledgeData.supporter.username}
                             </li>
                         );
                     })}
