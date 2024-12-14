@@ -115,12 +115,19 @@ const NewProjectForm = () => {
                     />
                 </div>
                 <div className='btn-container'>
-                    <button type='submit'>Create Project</button>
+                    <button className='green-btn' type='submit'>
+                        Create Project
+                    </button>
                 </div>
             </form>
-            <p>
-                https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png
-            </p>
+
+            {/* URL */}
+            <div className='url-container'>
+                <p>Placeholder URL</p>
+                <p>
+                    https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png
+                </p>
+            </div>
         </section>
     );
 };

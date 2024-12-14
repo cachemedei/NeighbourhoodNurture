@@ -70,7 +70,7 @@ const EditProfile = () => {
                         <li>{user?.last_name}</li>
                         <li>{user?.email}</li>
                     </ul>
-                    <button onClick={handleEditing}>Edit</button>
+                    <button className='green-btn' onClick={handleEditing}>Edit</button>
                 </section>
             ) : (
                 <form onSubmit={handleSubmit}>
@@ -117,8 +117,8 @@ const EditProfile = () => {
                     </div>
 
                     <div className='btn-container'>
-                        <button type='submit'>Submit</button>
-                        <button onClick={handleEditing}>Discard</button>
+                        <button className='green-btn' type='submit'>Submit</button>
+                        <button className='green-btn' onClick={handleEditing}>Discard</button>
                     </div>
                 </form>
             )}

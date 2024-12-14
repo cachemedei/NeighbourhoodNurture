@@ -68,7 +68,7 @@ const Project = () => {
 
             <section className='pledge'>
                     {!showPledgeForm ? (
-                        <button className='btn' onClick={handlePledge}>
+                        <button className='green-btn' onClick={handlePledge}>
                             Pledge Now
                         </button>
                     ) : (

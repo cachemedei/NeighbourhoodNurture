@@ -1,12 +1,12 @@
-import './styles/DeleteProject.css';
+import './styles/DeleteEditBtns.css';
 
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 
 import deleteProject from '../api/delete-project';
 
-const DeleteProject = ({ projectId, token }) => {
+const DeleteEditBtns = ({ projectId, token, link }) => {
     const notify = (msg) => toast('Deleting project');
     const navigate = useNavigate();
     const [confirmDelete, setConfirmDelete] = useState(false);
@@ -20,16 +20,26 @@ const DeleteProject = ({ projectId, token }) => {
     };
 
     return (
-        <div className='delete-project'>
+        <div className='delete-edit'>
             <Toaster position='bottom-right' />
+
             {!confirmDelete ? (
-                <p className='del-btn' onClick={() => setConfirmDelete(true)}>
-                    Delete
-                </p>
+                <div className='btn-container'>
+                    {/* link to edit project */}
+                    <Link className='edit-btn' to={link}>
+                        Edit
+                    </Link>
+                    <p
+                        className='del-btn'
+                        onClick={() => setConfirmDelete(true)}
+                    >
+                        Delete
+                    </p>
+                </div>
             ) : (
-                <>
+                <div className='btn-container'>
                     <p className='confirm-text'>Are you sure?</p>
-                    <div className='confirm-btn-container'>
+                    {/* <div className='confirm-btn-container'> */}
                         <p className='del-btn' onClick={handleDelete}>
                             Delete
                         </p>
@@ -39,10 +49,10 @@ const DeleteProject = ({ projectId, token }) => {
                         >
                             Cancel
                         </p>
-                    </div>
-                </>
+                    {/* </div> */}
+                </div>
             )}
         </div>
     );
 };
-export default DeleteProject;
+export default DeleteEditBtns;

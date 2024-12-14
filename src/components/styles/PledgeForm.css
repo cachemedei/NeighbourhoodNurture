@@ -9,11 +9,12 @@
 .pledge-form form {
     display: flex;
     flex-direction: column;
+
 }
 
 .pledge-form .amount-options {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     column-gap: 20px;
     row-gap: 20px;
 
@@ -69,7 +70,7 @@
     font-size: 18px;
 }
 
-.pledge-form .pledge-btn {
+.pledge-form .green-btn {
     width: 120px;
     margin-top: 20px;
 }

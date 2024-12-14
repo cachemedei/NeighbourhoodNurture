@@ -9,6 +9,7 @@ import { ScrollRestoration } from 'react-router-dom';
 import Nav from './components/Nav';
 import Activity from './components/Activity';
 import EditProfile from './components/EditProfile';
+import EditProject from './components/EditProject';
 
 import Home from './pages/Home';
 import About from './pages/About';
@@ -17,7 +18,6 @@ import Signup from './pages/Signup';
 import Project from './pages/Project';
 import NewProject from './pages/NewProject';
 import Account from './pages/Account';
-import EditProject from './pages/EditProject';
 
 const router = createBrowserRouter([
     {
@@ -34,10 +34,13 @@ const router = createBrowserRouter([
                 children: [
                     { path: '/account', element: <Activity /> },
                     { path: '/account/editprofile', element: <EditProfile /> },
+                    {
+                        path: '/account/editproject/:id',
+                        element: <EditProject />,
+                    },
                 ],
             },
             { path: '/newproject', element: <NewProject /> },
-            { path: '/account/editproject/:id', element: <EditProject /> },
             { path: '/project/:id', element: <Project /> },
         ],
     },

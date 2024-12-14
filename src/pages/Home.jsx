@@ -33,7 +33,7 @@ const Home = () => {
                     a cleaner, greener and more vibrant local community all
                     starts here, with you.
                 </p>
-                <button>
+                <button className='green-btn'>
                     {auth.token ? (
                         <Link to='/newproject'>Create Project</Link>
                     ) : (

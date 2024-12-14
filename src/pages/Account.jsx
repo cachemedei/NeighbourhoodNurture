@@ -4,10 +4,15 @@ import { Link, Outlet, ScrollRestoration } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 
 import accountImg from '/images/accountimg.webp';
+import ErrorPage from '../components/ErrorPage';
 
 const Account = () => {
     const { auth } = useAuth();
     const username = auth.username;
+
+    if (!auth.token) {
+        return <ErrorPage />;
+    }
 
     return (
         <section className='account'>

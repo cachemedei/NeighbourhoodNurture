@@ -1,28 +1,82 @@
 .edit-profile {
     width: 100vw;
     min-height: 100vh;
+    margin-left: 90px;
+
+    @media screen and (max-width: 720px) {
+        margin-top: 40px;
+        margin-left: 0;
+    }
 }
 
 .edit-profile h1 {
     font-size: 20px;
-    text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+
+    @media screen and (max-width:720px) {
+        text-align: center;
+        margin-bottom: 50px;
+    }
 }
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @media screen and (max-width: 720px) {
+        align-items: center;
+        gap: 30px;
+    }
+}
+
+.user-details ul {
+    padding: 40px;
+
+    @media screen and (max-width:720px) {
+        padding: 0;
+    }
+}
+
+.user-details li {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.user-details button {
+    @media screen and (max-width: 720px) {
+        margin-right: 20px;
+    }
+}
+
 .edit-profile form {
     width: fit-content;
-    margin: 0 auto;
+
+    @media screen and (max-width: 720px) {
+        margin: 0 auto;
+        font-size: 14px;
+    }
 }
 
 .edit-profile .input-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    @media screen and (max-width: 720px) {
+        font-size: 14px;
+    }
 }
 
 .edit-profile input {
     width: 250px;
     margin-left: 40px;
     padding: 10px;
+
+    @media screen and (max-width: 720px) {
+        margin-left: 20px;
+        font-size: 14px;
+    }
 }
 
 .edit-profile form label {
@@ -39,18 +93,4 @@
 .edit-profile button {
     min-width: 90px;
     padding: 8px;
-}
-
-.user-details {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: space-evenly;
-    height: 250px;
-    margin-left: 100px;
-}
-
-.user-details li {
-    font-size: 18px;
-    margin-bottom: 10px;
 }

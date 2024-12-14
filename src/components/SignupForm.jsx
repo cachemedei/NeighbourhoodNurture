@@ -106,11 +106,11 @@ const SignupForm = () => {
                     />
                 </div>
                 <div className='btn-container'>
-                    <button type='submit'>Create Account</button>
+                    <button className='green-btn' type='submit'>Create Account</button>
                 </div>
                 <p>
                     Already have an account?
-                    <Link className='login-link' to='/signup'>
+                    <Link className='login-link' to='/login'>
                         Log In
                     </Link>
                 </p>

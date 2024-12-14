@@ -1,13 +1,13 @@
 import './styles/EditProject.css';
 
 import { useAuth } from '../hooks/use-auth';
-import { replace, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 
 import useLoader from '../hooks/use-loader';
 import useProject from '../hooks/use-project';
 import putProject from '../api/put-project';
-import LrgLoader from '../components/LrgLoader';
+import LrgLoader from './LrgLoader';
 
 const EditProject = () => {
     const { loading } = useLoader(400);
@@ -41,10 +41,10 @@ const EditProject = () => {
                 editingProject?.image,
                 project.id,
                 auth.token,
-                project,
+                project
             );
-            navigate(`/project/${project.id}`, {replace:true});
-            navigate(0)
+            navigate(`/project/${project.id}`, { replace: true });
+            navigate(0);
         } catch (error) {
             console.error(error);
         }
@@ -107,8 +107,14 @@ const EditProject = () => {
                         placeholder='URL to an image'
                     />
                 </div>
-
-                <button type='submit'>submit</button>
+                <div className='btn-container'>
+                    <button className='green-btn' type='submit'>
+                        Save Changes
+                    </button>
+                    <Link to='/account' className='green-btn'>
+                        Discard
+                    </Link>
+                </div>
             </form>
         </section>
     );

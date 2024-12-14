@@ -89,7 +89,7 @@ const LoginForm = () => {
                     />
                 </div>
                 <div className='btn-container'>
-                    <button type='submit'>Log In</button>
+                    <button className='green-btn' type='submit'>Log In</button>
                 </div>
                 <p>
                     Don't have an account yet?

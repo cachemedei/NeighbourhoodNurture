@@ -42,9 +42,8 @@
     align-items: center;
 }
 
-.login button {
+.login .green-btn {
     margin: 20px auto;
-    padding: 12px;
 }
 
 .login p {

@@ -1,0 +1,27 @@
+.error-page {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-top: 150px;
+}
+
+.error-page h1 {
+    font-size: 34px;
+}
+
+.error-page p {
+    font-size: 24px;
+    text-align: center;
+    font-weight: 200;
+
+    @media screen and (max-width: 550px) {
+        width: 250px;
+    }
+}
+
+.error-page .error-link {
+    font-weight: 700;
+}

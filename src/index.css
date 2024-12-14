@@ -22,11 +22,6 @@ body {
     color: #ebe5e5;
 }
 
-/* img {
-    display: inline-block;
-    max-width: 100%;
-} */
-
 input,
 button,
 textarea,
@@ -35,13 +30,15 @@ select {
     cursor: pointer;
 }
 
-button {
+.green-btn {
     background-color: #425e2f;
     color: #ebe5e5;
     border: none;
     font-weight: 500;
     border-radius: 5px;
     box-shadow: 1px 1px 8px #1d2616;
+    padding: 8px 10px;
+    text-align: center;
 }
 
 a {
@@ -60,4 +57,12 @@ form * {
 input, textarea {
     border-radius: 4px;
     padding: 8px;
+    cursor: text;
+    background-color: #ebe5e5;
+}
+
+.url-container {
+    font-size: 10px;
+    width: 100%;
+    text-align: center;
 }

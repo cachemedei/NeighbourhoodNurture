@@ -62,19 +62,19 @@ const PledgeForm = ({ projectId }) => {
             <form onSubmit={handleSubmitPledge}>
                 <label htmlFor=''></label>
                 <div className='amount-options'>
-                    <button value='5' id='amount' onClick={handleChange}>
+                    <button className='green-btn' value='5' id='amount' onClick={handleChange}>
                         $5
                     </button>
-                    <button value='10' id='amount' onClick={handleChange}>
+                    <button className='green-btn' value='10' id='amount' onClick={handleChange}>
                         $10
                     </button>
-                    <button value='20' id='amount' onClick={handleChange}>
+                    <button className='green-btn' value='20' id='amount' onClick={handleChange}>
                         $20
                     </button>
-                    <button value='50' id='amount' onClick={handleChange}>
+                    <button className='green-btn' value='50' id='amount' onClick={handleChange}>
                         $50
                     </button>
-                    <button value='100' id='amount' onClick={handleChange}>
+                    <button className='green-btn' value='100' id='amount' onClick={handleChange}>
                         $100
                     </button>
                     {other ? (
@@ -86,7 +86,7 @@ const PledgeForm = ({ projectId }) => {
                             className='other'
                         />
                     ) : (
-                        <button onClick={() => setOther(!other)}>Other</button>
+                        <button className='green-btn' onClick={() => setOther(!other)}>Other</button>
                     )}
                 </div>
                 <p className='pledge-amount'>${pledge.amount}</p>
@@ -121,7 +121,7 @@ const PledgeForm = ({ projectId }) => {
                         <Link to='/signup'>create an account</Link>!
                     </p>
                 )}
-                <button className='pledge-btn'>
+                <button className='green-btn'>
                     Pledge
                 </button>
             </form>
