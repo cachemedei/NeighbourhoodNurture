@@ -28,8 +28,8 @@ const LoginForm = () => {
 
     const handleChange = (e) => {
         const { id, value } = e.target;
-        setCredentials((prevCredentials) => ({
-            ...prevCredentials,
+        setCredentials((prev) => ({
+            ...prev,
             [id]: value,
         }));
     };

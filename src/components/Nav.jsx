@@ -1,6 +1,6 @@
 import './styles/Nav.css';
 
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, Outlet, ScrollRestoration, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 import { useState } from 'react';
 
@@ -22,13 +22,13 @@ const Nav = () => {
         window.localStorage.removeItem('user');
         window.localStorage.removeItem('username');
         setAuth({ token: null, user: '', username: '' });
-        setShowNav(false)
+        setShowNav(false);
     };
 
     return (
         <nav>
             <div className='nav'>
-                <Link onClick={handleShowMenu} to='/'>
+                <Link to='/'>
                     <img src={nurtureLogo} alt='' />
                 </Link>
 
@@ -114,6 +114,7 @@ const Nav = () => {
                     )}
                 </div>
             ) : null}
+            <ScrollRestoration />
             <Outlet />
             <Footer />
         </nav>

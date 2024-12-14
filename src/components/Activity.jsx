@@ -1,10 +1,9 @@
 import './styles/Activity.css';
 
 import useLoader from '../hooks/use-loader';
-
+import SmlLoader from './SmlLoader';
 import OwnedPledges from '../components/OwnedPledges';
 import OwnedProjects from '../components/OwnedProjects';
-import SmlLoader from './SmlLoader';
 
 const Activity = () => {
     const {loading} = useLoader(500)

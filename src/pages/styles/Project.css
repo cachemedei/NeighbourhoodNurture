@@ -29,10 +29,19 @@
 .pledge {
     width: 70%;
     margin: 0 auto;
+
+    @media screen and (max-width:600px) {
+        width: 100%;
+        padding: 10px;
+    }
 }
 
 .pledge button {
     padding: 12px;
+
+    @media screen and (max-width:600px) {
+        width: 100%;
+    }
 }
 
 .close-pledge {

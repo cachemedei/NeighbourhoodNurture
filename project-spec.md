@@ -1,6 +1,3 @@
-## Project Description
-Kickstarter, Go Fund Me, Kiva, Change.org, Patreon… All of these different websites have something in common: they provide a platform for people to fund projects that they believe in, but they all have a slightly different approach. You are going to create your own crowdfunding website (this time the front-end), and put your own spin on it!
-
 ## Project Requirements
 
 - [x] Be separated into two distinct projects: an API built using the Django Rest Framework and a website built using React. 
@@ -10,6 +7,7 @@ Kickstarter, Go Fund Me, Kiva, Change.org, Patreon… All of these different web
   - [x] Username
   - [x] Email address
   - [x] Password
+
 - [x] Ability to create a “project” to be crowdfunded which will include at least the following attributes:
   - [x] Title
   - [x] Owner (a user)
@@ -18,12 +16,16 @@ Kickstarter, Go Fund Me, Kiva, Change.org, Patreon… All of these different web
   - [x] Target amount to fundraise
   - [x] Whether it is currently open to accepting new supporters or not
   - [x] When the project was created
+
+
 - [x] Ability to “pledge” to a project. A pledge should include at least the following attributes:
   - [x] An amount
   - [x] The project the pledge is for
   - [x] The supporter/user (i.e. who created the pledge)
   - [ ] Whether the pledge is anonymous or not
   - [x] A comment to go along with the pledge
+
+
 - [ ] Implement suitable update/delete functionality, e.g. should a project owner be allowed to update a project description?
 - [x] Implement suitable permissions, e.g. who is allowed to delete a pledge?
   - no one
@@ -47,3 +49,15 @@ Please include the following in your readme doc:
 - [ ] A screenshot of the project creation form
 - [ ] A screenshot of a project with pledges
 - [ ] A screenshot of the resulting page when an unauthorized user attempts to edit a project (optional, depending on whether or not this functionality makes sense in your app!)
+
+
+read me to do list
+
+note the changes i made to my backend
+
+pictures
+
+link to deployed
+
+
+navigate to clear state

@@ -6,11 +6,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaChevronRight, FaChevronDown } from 'react-icons/fa6';
 
 import useProjects from '../hooks/use-projects';
-import DeleteProject from './DeleteProject';
+import OwnedProjectCard from './OwnedProjectCard';
 
 const OwnedProjects = () => {
     const { projects } = useProjects();
-    const { auth, setAuth } = useAuth();
+    const { auth } = useAuth();
     const [usersProjects, setUsersProjects] = useState([]);
     const userId = auth.user;
     const [showData, setShowData] = useState(false);
@@ -38,30 +38,9 @@ const OwnedProjects = () => {
             </h1>
             {showData ? (
                 <section className='list'>
-                    {usersProjects.map((project, i) => (
-                        <article className='item' key={i}>
-                            <h3 className='subtitle'>{project.title}</h3>
-                            <Link to={`/project/${project.id}`}>
-                                <img
-                                    className='image'
-                                    src={project.image}
-                                    alt=''
-                                />
-                            </Link>
-                            <div className='project-btns'>
-                                <DeleteProject
-                                    projectId={project.id}
-                                    token={auth.token}
-                                />
-                                <Link
-                                    className='edit-btn'
-                                    to='/account/editproject'
-                                >
-                                    Edit
-                                </Link>
-                            </div>
-                        </article>
-                    ))}
+                    {usersProjects.map((projectData, i) => {
+                        return <OwnedProjectCard key={i} projectData={projectData} />
+                    })}
                 </section>
             ) : null}
         </section>

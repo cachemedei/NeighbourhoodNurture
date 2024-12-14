@@ -1,4 +1,4 @@
-import './styles/OwnedProjects.css';
+import './styles/DeleteProject.css';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -11,9 +11,8 @@ const DeleteProject = ({ projectId, token }) => {
     const navigate = useNavigate();
     const [confirmDelete, setConfirmDelete] = useState(false);
 
-
     const handleDelete = () => {
-        deleteProject(projectId, token)
+        deleteProject(projectId, token);
         notify();
         setTimeout(() => {
             navigate(0);
@@ -21,7 +20,7 @@ const DeleteProject = ({ projectId, token }) => {
     };
 
     return (
-        <>
+        <div className='delete-project'>
             <Toaster position='bottom-right' />
             {!confirmDelete ? (
                 <p className='del-btn' onClick={() => setConfirmDelete(true)}>
@@ -29,19 +28,21 @@ const DeleteProject = ({ projectId, token }) => {
                 </p>
             ) : (
                 <>
-                    <p>Are you sure?</p>
-                    <p className='del-btn' onClick={handleDelete}>
-                        Yes, delete
-                    </p>
-                    <p
-                        className='del-btn'
-                        onClick={() => setConfirmDelete(false)}
-                    >
-                        Cancel
-                    </p>
+                    <p className='confirm-text'>Are you sure?</p>
+                    <div className='confirm-btn-container'>
+                        <p className='del-btn' onClick={handleDelete}>
+                            Delete
+                        </p>
+                        <p
+                            className='del-btn'
+                            onClick={() => setConfirmDelete(false)}
+                        >
+                            Cancel
+                        </p>
+                    </div>
                 </>
             )}
-        </>
+        </div>
     );
 };
 export default DeleteProject;

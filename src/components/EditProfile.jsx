@@ -17,6 +17,8 @@ const EditProfile = () => {
     const [editing, setEditing] = useState(false);
     const handleEditing = () => setEditing(!editing);
 
+    //set users details as state for input fields
+    
     const [userDetails, setUserDetails] = useState({
         username: '',
         password: '',
