@@ -11,6 +11,10 @@
     height: 100%;
     object-fit: cover;
     margin: 0 auto 20px;
+
+    @media screen and (max-width:720px) {
+        width: 350px;
+    }
 }
 
 .project-info {
@@ -23,12 +27,12 @@
     gap: 20px;
 }
 
-.pledge-data {
+.project-page .pledge-data {
     width: 70%;
     margin: 0 auto 60px auto;
 }
 
-.pledge {
+.project-page .pledge {
     width: 70%;
     margin: 0 auto;
 
@@ -38,7 +42,7 @@
     }
 }
 
-.pledge .green-btn {
+.project-page .pledge .green-btn {
     padding: 12px;
 
     @media screen and (max-width:600px) {
@@ -57,11 +61,12 @@
     right: 0;
 }
 
-.text {
+.project-page .text {
     font-size: 18px;
     text-align: center;
+    padding: 0 30px 0 30px;
 }
 
-.login-link, .signup-link {
+.project-page .login-link, .project-page .signup-link {
     font-weight: 800;
 }

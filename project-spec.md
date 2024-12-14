@@ -22,17 +22,17 @@
   - [x] An amount
   - [x] The project the pledge is for
   - [x] The supporter/user (i.e. who created the pledge)
-  - [ ] Whether the pledge is anonymous or not
+  - [x] Whether the pledge is anonymous or not
   - [x] A comment to go along with the pledge
 
 
-- [ ] Implement suitable update/delete functionality, e.g. should a project owner be allowed to update a project description?
+- [x] Implement suitable update/delete functionality, e.g. should a project owner be allowed to update a project description?
 - [x] Implement suitable permissions, e.g. who is allowed to delete a pledge?
   - no one
-- [ ] Return the relevant status codes for both successful and unsuccessful requests to the API.
-- [ ] Handle failed requests gracefully (e.g. you should have a custom 404 page rather than the default error page).
-- [ ] Use Token Authentication.
-- [ ] Implement responsive design.
+- [x] Return the relevant status codes for both successful and unsuccessful requests to the API.
+- [x] Handle failed requests gracefully (e.g. you should have a custom 404 page rather than the default error page).
+- [x] Use Token Authentication.
+- [x] Implement responsive design.
 
 ## Additional Notes
 No additional libraries or frameworks, other than what we use in class, are allowed unless approved by the Lead Mentor.
