@@ -7,8 +7,10 @@
 }
 
 .project-page img {
-    margin-bottom: 20px;
-    width: 100%;
+    width: 800px;
+    height: 100%;
+    object-fit: cover;
+    margin: 0 auto 20px;
 }
 
 .project-info {
