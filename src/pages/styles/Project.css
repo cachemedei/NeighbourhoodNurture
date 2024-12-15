@@ -12,7 +12,7 @@
     object-fit: cover;
     margin: 0 auto 20px;
 
-    @media screen and (max-width:720px) {
+    @media screen and (max-width: 720px) {
         width: 350px;
     }
 }
@@ -31,22 +31,31 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    gap: 10px;
+
+    @media screen and (max-width: 620px) {
+        gap: 20px;
+    } 
+}
+
+.goal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
 }
 
 .project-page .pledge-data {
-    width: 70%;
-    margin: 0 auto 60px auto;
-}
-
-.project-page .pledge-data h3 {
-    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
 }
 
 .project-page .pledge {
     width: 70%;
     margin: 0 auto;
 
-    @media screen and (max-width:600px) {
+    @media screen and (max-width: 600px) {
         width: 100%;
         padding: 10px;
     }
@@ -55,7 +64,7 @@
 .project-page .pledge .green-btn {
     padding: 12px;
 
-    @media screen and (max-width:600px) {
+    @media screen and (max-width: 600px) {
         width: 100%;
     }
 }
@@ -82,6 +91,7 @@
     padding: 0 30px 0 30px;
 }
 
-.project-page .login-link, .project-page .signup-link {
+.project-page .login-link,
+.project-page .signup-link {
     font-weight: 800;
 }

@@ -11,7 +11,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const NewProjectForm = () => {
     const navigate = useNavigate();
-    //const { auth } = useAuth();
+    const { auth } = useAuth();
 
     const [projectDetails, setProjectDetails] = useState({
         title: '',

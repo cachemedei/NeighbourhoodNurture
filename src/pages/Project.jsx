@@ -1,23 +1,30 @@
 import './styles/Project.css';
 
+import { useAuth } from '../hooks/use-auth';
 import { useParams, Link } from 'react-router-dom';
 import { useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
-import { useAuth } from '../hooks/use-auth';
 
-import useUser from '../hooks/use-user';
 import useProject from '../hooks/use-project';
 import PledgeForm from '../components/PledgeForm';
 import LrgLoader from '../components/LrgLoader';
 import NotFound from '../components/NotFound';
+import GoalStatusBar from '../components/GoalStatusBar';
+import ProjectOwner from '../components/ProjectOwner';
 
 const Project = () => {
     const { auth } = useAuth();
     const { id } = useParams();
-    const { project, isLoading, error } = useProject();
+    const { project, isLoading, error } = useProject(id);
 
-    //couldn't figure out how to make use of both errors
-    const { user, userError } = useUser(project?.owner);
+    //pledge total
+    const pledgeTotal = project?.pledges.reduce(
+        (acc, pledge) => acc + pledge.amount,
+        0
+    );
+    const remainder = project?.goal - pledgeTotal;
+    const pledgePercent = Math.floor((pledgeTotal / project?.goal) * 100);
+    const remainderPercent = Math.floor((remainder / project?.goal) * 100);
 
     const [showPledgeForm, setShowPledgeForm] = useState(false);
     const handlePledge = () => setShowPledgeForm(!showPledgeForm);
@@ -49,20 +56,26 @@ const Project = () => {
 
             {/* project info */}
             <section className='project-info'>
+                <div className='header'></div>
                 <h2>{project.title}</h2>
-                <h3>Goal: ${project.goal}</h3>
                 <p>{project.description}</p>
                 <div className='date-owner'>
                     <h4>Launched {formattedDate}</h4>
-                    <h4>
-                        By {user?.first_name} {user?.last_name}
-                    </h4>
+                    <ProjectOwner owner={project?.owner} />
                 </div>
             </section>
+            <div className='goal-container'>
+                <GoalStatusBar
+                    pledgePercent={pledgePercent}
+                    remainderPercent={remainderPercent}
+                />
+                <h3 className='goal'>
+                    ${pledgeTotal} of ${project.goal} raised so far
+                </h3>
+            </div>
 
             {/* pledge data */}
             <section className='pledge-data'>
-                <h3>Pledges</h3>
                 <ul>
                     {project.pledges?.map((pledgeData, i) => {
                         return (

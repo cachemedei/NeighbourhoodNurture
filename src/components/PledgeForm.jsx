@@ -23,7 +23,7 @@ const PledgeForm = ({ projectId }) => {
         amount: '',
         comment: '',
         project: projectId,
-        anonymous: true,
+        anonymous: false,
     });
 
     const handleChange = (e) => {
