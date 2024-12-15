@@ -2,7 +2,6 @@ import './styles/OwnedProjects.css';
 
 import { useAuth } from '../hooks/use-auth';
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { FaChevronRight, FaChevronDown } from 'react-icons/fa6';
 
 import useProjects from '../hooks/use-projects';
@@ -13,7 +12,7 @@ const OwnedProjects = () => {
     const { auth } = useAuth();
     const [usersProjects, setUsersProjects] = useState([]);
     const userId = auth.user;
-    const [showData, setShowData] = useState(false);
+    const [showData, setShowData] = useState(true);
     const handleShowData = () => setShowData(!showData);
 
     useEffect(() => {

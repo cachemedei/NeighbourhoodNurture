@@ -4,16 +4,20 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 
+import z from 'zod';
+
 import postPledge from '../api/post-pledge';
 import toast, { Toaster } from 'react-hot-toast';
 
 const PledgeForm = ({ projectId }) => {
-    const notify = () => toast('Thank you for your pledge!');
     const navigate = useNavigate();
     const { auth } = useAuth();
-
     const [other, setOther] = useState(false);
 
+    const pledgeSchema = z.object({
+        amount: z.string().min(1, 'Donations must be at least $1'),
+        comment: z.string().min(1, 'Please add a comment'),
+    });
     const [pledge, setPledge] = useState({
         supporter: auth.user,
         amount: '',
@@ -30,51 +34,84 @@ const PledgeForm = ({ projectId }) => {
         }));
     };
 
-    const handleSubmitPledge = async (e) => {
+    const handlePledgeSubmit = async (e) => {
         e.preventDefault();
-        if (
-            pledge.supporter &&
-            pledge.amount &&
-            pledge.comment &&
-            pledge.project &&
-            pledge.anonymous
-        ) {
-            postPledge(
+        const result = pledgeSchema.safeParse(pledge);
+        if (!result.success) {
+            const error = result.error.errors?.[0];
+            if (error) {
+                toast(error.message);
+            }
+            return;
+        }
+        try {
+            await postPledge(
                 auth.token,
                 pledge.supporter,
                 pledge.amount,
                 pledge.comment,
                 pledge.project,
-                pledge.anonymous,
-            ).then(() => {
-                notify();
-                setTimeout(() => {
-                    navigate('/account');
-                }, 2000);
-            });
+                pledge.anonymous
+            );
+            toast('Thank you for your donation!');
+            setTimeout(() => {
+                navigate('/account');
+            }, 2000);
+        } catch (error) {
+            toast(error.message);
         }
     };
 
     return (
         <section className='pledge-form'>
-            <Toaster />
+            <Toaster position='bottom-center' />
             <h4>How much would you like to pledge?</h4>
-            <form onSubmit={handleSubmitPledge}>
+            <form onSubmit={handlePledgeSubmit}>
                 <label htmlFor=''></label>
                 <div className='amount-options'>
-                    <button className='green-btn' value='5' id='amount' onClick={handleChange}>
+                    <button
+                        type='button'
+                        className='number-btn'
+                        value='5'
+                        id='amount'
+                        onClick={handleChange}
+                    >
                         $5
                     </button>
-                    <button className='green-btn' value='10' id='amount' onClick={handleChange}>
+                    <button
+                        type='button'
+                        className='number-btn'
+                        value='10'
+                        id='amount'
+                        onClick={handleChange}
+                    >
                         $10
                     </button>
-                    <button className='green-btn' value='20' id='amount' onClick={handleChange}>
+                    <button
+                        type='button'
+                        className='number-btn'
+                        value='20'
+                        id='amount'
+                        onClick={handleChange}
+                    >
                         $20
                     </button>
-                    <button className='green-btn' value='50' id='amount' onClick={handleChange}>
+                    <button
+                        type='button'
+                        className='number-btn'
+                        value='50'
+                        id='amount'
+                        onClick={handleChange}
+                    >
                         $50
                     </button>
-                    <button className='green-btn' value='100' id='amount' onClick={handleChange}>
+                    <button
+                        type='button'
+                        className='number-btn'
+                        value='100'
+                        id='amount'
+                        onClick={handleChange}
+                    >
                         $100
                     </button>
                     {other ? (
@@ -83,13 +120,19 @@ const PledgeForm = ({ projectId }) => {
                             type='number'
                             id='amount'
                             placeholder='$'
-                            className='other'
+                            className='number-btn'
                         />
                     ) : (
-                        <button className='green-btn' onClick={() => setOther(!other)}>Other</button>
+                        <button
+                            type='button'
+                            className='number-btn'
+                            onClick={() => setOther(!other)}
+                        >
+                            Other
+                        </button>
                     )}
                 </div>
-                <p className='pledge-amount'>${pledge.amount}</p>
+                <p className='pledge-amount'>$ {pledge.amount}</p>
 
                 <label htmlFor='comment' className='comment-label'>
                     Comment:{' '}
@@ -121,7 +164,7 @@ const PledgeForm = ({ projectId }) => {
                         <Link to='/signup'>create an account</Link>!
                     </p>
                 )}
-                <button className='green-btn'>
+                <button className='green-btn' type='submit'>
                     Pledge
                 </button>
             </form>

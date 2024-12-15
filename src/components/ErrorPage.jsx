@@ -1,6 +1,7 @@
-import { useAuth } from '../hooks/use-auth';
 import './styles/ErrorPage.css';
 
+import tree from '/favicon.svg';
+import { useAuth } from '../hooks/use-auth';
 import { Link } from 'react-router-dom';
 
 const ErrorPage = () => {
@@ -11,7 +12,9 @@ const ErrorPage = () => {
             <section className='error-page'>
                 <h1>Oops!</h1>
                 <p className=''>Looks like you're already logged in</p>
-                <Link to='/' className='error-link'>Return Home</Link>
+                <Link to='/' className='error-link'>
+                    Return Home
+                </Link>
             </section>
         );
     } else
@@ -31,6 +34,9 @@ const ErrorPage = () => {
                     </Link>
                     to view this page
                 </p>
+                <Link to='/'>
+                    <img className='tree' src={tree} alt='' />
+                </Link>
             </section>
         );
 };

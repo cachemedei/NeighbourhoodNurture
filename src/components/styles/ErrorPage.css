@@ -25,3 +25,7 @@
 .error-page .error-link {
     font-weight: 700;
 }
+
+.error-page .tree {
+    height: 300px;
+}

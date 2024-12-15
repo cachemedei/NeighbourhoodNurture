@@ -27,6 +27,12 @@ nav .link {
     transition: border ease-in 0.5s;
 }
 
+nav .logout {
+    background: none;
+    color: inherit;
+    border: none;
+}
+
 nav .link:hover {
     border-bottom: 1px solid #425e2f;
 }
@@ -42,7 +48,8 @@ nav .link:hover {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    height: 150px;
+    gap: 15px;
+    height: 190px;
     width: 100%;
     font-size: 20px;
     margin-bottom: 10px;

@@ -1,7 +1,7 @@
 async function postSignup(fName, lName, email, username, password) {
     const url = `${import.meta.env.VITE_API_URL}/users/`;
     const response = await fetch(url, {
-        method: 'POST', // We need to tell the server that we are sending JSON data so we set the Content-Type header to application/json
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -15,7 +15,7 @@ async function postSignup(fName, lName, email, username, password) {
     });
 
     if (!response.ok) {
-        const fallbackError = `Error trying to sign up`;
+        const fallbackError = `Error trying to create account`;
 
         const data = await response.json().catch(() => {
             throw new Error(fallbackError);

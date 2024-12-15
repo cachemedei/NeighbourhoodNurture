@@ -6,10 +6,10 @@ import OwnedPledges from '../components/OwnedPledges';
 import OwnedProjects from '../components/OwnedProjects';
 
 const Activity = () => {
-    const {loading} = useLoader(500)
+    const { loading } = useLoader(1100);
 
     if (loading) {
-        return <SmlLoader />
+        return <SmlLoader />;
     }
     return (
         <section className='activity'>

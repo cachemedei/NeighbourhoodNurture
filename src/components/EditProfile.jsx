@@ -8,6 +8,7 @@ import useUser from '../hooks/use-user';
 import putUser from '../api/put-user';
 import useLoader from '../hooks/use-loader';
 import SmlLoader from './SmlLoader';
+import toast, { Toaster } from 'react-hot-toast';
 
 const EditProfile = () => {
     const navigate = useNavigate();
@@ -17,8 +18,6 @@ const EditProfile = () => {
     const [editing, setEditing] = useState(false);
     const handleEditing = () => setEditing(!editing);
 
-    //set users details as state for input fields
-    
     const [userDetails, setUserDetails] = useState({
         username: '',
         password: '',
@@ -38,7 +37,7 @@ const EditProfile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            putUser(
+            await putUser(
                 userDetails?.username,
                 userDetails?.password,
                 userDetails?.fname,
@@ -50,7 +49,7 @@ const EditProfile = () => {
             navigate(0);
             setEditing(!editing);
         } catch (error) {
-            console.error(error);
+            toast(error.message);
         }
     };
 
@@ -60,6 +59,8 @@ const EditProfile = () => {
 
     return (
         <section className='edit-profile'>
+            <Toaster position='bottom-center' />
+
             <h1>Edit Profile</h1>
 
             {!editing ? (
@@ -70,7 +71,9 @@ const EditProfile = () => {
                         <li>{user?.last_name}</li>
                         <li>{user?.email}</li>
                     </ul>
-                    <button className='green-btn' onClick={handleEditing}>Edit</button>
+                    <button className='green-btn' onClick={handleEditing}>
+                        Edit
+                    </button>
                 </section>
             ) : (
                 <form onSubmit={handleSubmit}>
@@ -117,8 +120,12 @@ const EditProfile = () => {
                     </div>
 
                     <div className='btn-container'>
-                        <button className='green-btn' type='submit'>Submit</button>
-                        <button className='green-btn' onClick={handleEditing}>Discard</button>
+                        <button className='green-btn' type='submit'>
+                            Submit
+                        </button>
+                        <button className='green-btn' onClick={handleEditing}>
+                            Discard
+                        </button>
                     </div>
                 </form>
             )}

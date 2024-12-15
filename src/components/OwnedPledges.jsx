@@ -12,8 +12,8 @@ const OwnedPledges = () => {
     const userId = auth.user;
     const { ownedPledges } = usePledges(userId);
 
-    const [showData, setShowData] = useState(false);
-    const handleShowData = () => setShowData(!showData)
+    const [showData, setShowData] = useState(true);
+    const handleShowData = () => setShowData(!showData);
 
     return (
         <section className='owned-pledges'>

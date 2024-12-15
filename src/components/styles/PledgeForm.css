@@ -9,14 +9,14 @@
 .pledge-form form {
     display: flex;
     flex-direction: column;
-
 }
 
 .pledge-form .amount-options {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    column-gap: 20px;
-    row-gap: 20px;
+    column-gap: 10px;
+    row-gap: 10px;
+    width: fit-content;
 
     @media screen and (max-width: 720px) {
         grid-template-columns: repeat(3, 1fr);
@@ -24,16 +24,23 @@
     }
 }
 
-.pledge-form .amount-options button {
-    min-width: 80px;
+.pledge-form .number-btn {
+    min-width: 90px;
+    padding: 12px;
+    border: 2px solid #425e2f;
+    background-color: transparent;
+    border-radius: 2px;
+    box-shadow: 1px 1px 8px #1d2616;
+    color: inherit;
+    font-weight: 400;
+    font-size: 18px;
 }
 
-.pledge-form .other {
-    width: 110px;
-    padding: 5px 15px;
-    border-radius: 4px;
-    font-weight: 600;
+.pledge-form .amount-options input {
+    text-align: right;
 }
+
+
 
 .other::-webkit-outer-spin-button,
 .other::-webkit-inner-spin-button {
@@ -54,6 +61,7 @@
 
 .pledge-amount {
     font-size: 24px;
+    margin: 15px 0 0 15px;
 }
 
 .anonymous {
@@ -68,9 +76,10 @@
     border-radius: 4px;
     padding: 8px;
     font-size: 18px;
+    outline-color: #425e2f;
 }
 
 .pledge-form .green-btn {
-    width: 120px;
-    margin-top: 20px;
+    max-width: 120px;
+    margin-top: 30px;
 }

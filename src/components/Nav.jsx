@@ -1,6 +1,6 @@
 import './styles/Nav.css';
 
-import { Link, Outlet, ScrollRestoration } from 'react-router-dom';
+import { Link, Outlet, ScrollRestoration, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 import { useState } from 'react';
 import { IoMdMenu, IoMdClose } from 'react-icons/io';
@@ -9,17 +9,20 @@ import nurtureLogo from '/images/logo-green.png';
 import Footer from '../components/Footer';
 
 const Nav = () => {
+    const { auth, setAuth } = useAuth();
     const [showNav, setShowNav] = useState(false);
     const handleShowMenu = () => setShowNav(!showNav);
-    const { auth, setAuth } = useAuth();
+    const navigate = useNavigate();
 
     const handleLogout = () => {
-        window.localStorage.removeItem('token');
-        window.localStorage.removeItem('user');
-        window.localStorage.removeItem('username');
-        setAuth({ token: null, user: '', username: '' });
         setShowNav(false);
-        toast(`You've been logged out`);
+        navigate('/');
+        setTimeout(() => {
+            window.localStorage.removeItem('token');
+            window.localStorage.removeItem('user');
+            window.localStorage.removeItem('username');
+            setAuth({ token: null, user: '', username: '' });
+        }, 1000);
     };
 
     return (
@@ -42,13 +45,12 @@ const Nav = () => {
                             <Link className='link' to='/account'>
                                 Account
                             </Link>
-                            <Link
-                                className='link'
-                                to='/'
+                            <button
+                                className='link logout'
                                 onClick={handleLogout}
                             >
                                 Log Out
-                            </Link>
+                            </button>
                         </>
                     ) : (
                         <>
@@ -73,6 +75,9 @@ const Nav = () => {
                 <div className='mobile-links'>
                     <Link onClick={handleShowMenu} className='link' to='/'>
                         Home
+                    </Link>
+                    <Link className='link' to='/about'>
+                        About
                     </Link>
                     {auth.token ? (
                         <>

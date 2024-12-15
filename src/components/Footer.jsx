@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom';
 import './styles/Footer.css';
+
 import footerImg from '/images/footer.jpg';
+
+import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 
 const Footer = () => {

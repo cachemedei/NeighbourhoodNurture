@@ -1,5 +1,11 @@
-async function postPledge(token, supporter, amount, comment, project, anonymous) {
-
+async function postPledge(
+    token,
+    supporter,
+    amount,
+    comment,
+    project,
+    anonymous
+) {
     const url = `${import.meta.env.VITE_API_URL}/pledges/`;
     const response = await fetch(url, {
         method: 'POST',
@@ -17,7 +23,7 @@ async function postPledge(token, supporter, amount, comment, project, anonymous)
     });
 
     if (!response.ok) {
-        const fallbackError = `Error trying to pledge`;
+        const fallbackError = `Error trying to submit pledge`;
 
         const data = await response.json().catch(() => {
             throw new Error(fallbackError);
@@ -29,4 +35,4 @@ async function postPledge(token, supporter, amount, comment, project, anonymous)
 
     return await response.json();
 }
-export default postPledge
+export default postPledge;

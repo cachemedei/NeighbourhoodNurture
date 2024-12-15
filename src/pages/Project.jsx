@@ -14,7 +14,7 @@ import NotFound from '../components/NotFound';
 const Project = () => {
     const { auth } = useAuth();
     const { id } = useParams();
-    const { project, isLoading, error } = useProject(id);
+    const { project, isLoading, error } = useProject();
 
     //couldn't figure out how to make use of both errors
     const { user, userError } = useUser(project?.owner);
@@ -25,10 +25,10 @@ const Project = () => {
     //loader and error handling
     if (isLoading) {
         return <LrgLoader />;
-    } 
-    
+    }
+
     if (error) {
-        return <NotFound error={error.message} />
+        return <NotFound error={error.message} />;
     }
 
     //date formatter
@@ -52,15 +52,17 @@ const Project = () => {
                 <h2>{project.title}</h2>
                 <h3>Goal: ${project.goal}</h3>
                 <p>{project.description}</p>
-                <h4>Launched {formattedDate}</h4>
-                <h4>
-                    By {user?.first_name} {user?.last_name}
-                </h4>
+                <div className='date-owner'>
+                    <h4>Launched {formattedDate}</h4>
+                    <h4>
+                        By {user?.first_name} {user?.last_name}
+                    </h4>
+                </div>
             </section>
 
             {/* pledge data */}
             <section className='pledge-data'>
-                <h3>Pledges:</h3>
+                <h3>Pledges</h3>
                 <ul>
                     {project.pledges?.map((pledgeData, i) => {
                         return (
@@ -85,7 +87,7 @@ const Project = () => {
                     ) : (
                         <div className='close-pledge'>
                             <IoMdClose
-                                size={25}
+                                size={30}
                                 className='icon'
                                 onClick={handlePledge}
                             />

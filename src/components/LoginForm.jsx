@@ -9,7 +9,6 @@ import z from 'zod';
 
 import postLogin from '../api/post-login';
 
-
 const LoginForm = () => {
     const navigate = useNavigate();
     const { auth, setAuth } = useAuth();

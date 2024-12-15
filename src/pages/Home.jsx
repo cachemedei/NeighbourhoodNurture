@@ -10,7 +10,6 @@ import LrgLoader from '../components/LrgLoader';
 import NotFound from '../components/NotFound';
 
 const Home = () => {
-
     const { projects, isLoading, error } = useProjects();
     const { auth } = useAuth();
 
@@ -18,7 +17,7 @@ const Home = () => {
         return <LrgLoader />;
     }
     if (error) {
-        return <NotFound error={error.message} />
+        return <NotFound error={error.message} />;
     }
 
     return (

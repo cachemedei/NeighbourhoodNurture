@@ -8,6 +8,7 @@ import useLoader from '../hooks/use-loader';
 import useProject from '../hooks/use-project';
 import putProject from '../api/put-project';
 import LrgLoader from './LrgLoader';
+import toast, { Toaster } from 'react-hot-toast';
 
 const EditProject = () => {
     const { loading } = useLoader(400);
@@ -31,10 +32,10 @@ const EditProject = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            putProject(
+            await putProject(
                 editingProject?.title,
                 editingProject?.description,
                 editingProject?.goal,
@@ -46,7 +47,7 @@ const EditProject = () => {
             navigate(`/project/${project.id}`, { replace: true });
             navigate(0);
         } catch (error) {
-            console.error(error);
+            toast(error.message);
         }
     };
 
@@ -56,6 +57,8 @@ const EditProject = () => {
 
     return (
         <section className='edit-project'>
+            <Toaster position='bottom-center' />
+
             <h1>Edit Project</h1>
 
             <form onSubmit={handleSubmit}>

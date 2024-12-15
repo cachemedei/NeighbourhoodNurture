@@ -1,4 +1,4 @@
-import './styles/Loader.css'
+import './styles/Loader.css';
 
 const LrgLoader = () => {
     return <p className='lrg-loader'>Loading . . .</p>;

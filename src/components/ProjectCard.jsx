@@ -16,7 +16,7 @@ const ProjectCard = ({ projectData }) => {
             <img src={projectData.image} alt='' />
             <h1 className='card-title'>{projectData.title}</h1>
             <p className='description'>
-                {truncateString(projectData.description, 200)}
+                {truncateString(projectData.description, 160)}
             </p>
         </Link>
     );

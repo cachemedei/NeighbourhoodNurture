@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import DeleteEditBtns from './DeleteEditBtns';
 
 const OwnedProjectCard = ({ projectData }) => {
-    //const editProjectLink = `editproject/${projectData.id}`;
     const editProjectLink = `editproject/${projectData.id}`;
     const { auth } = useAuth();
 

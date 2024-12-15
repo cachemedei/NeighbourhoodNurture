@@ -7,13 +7,13 @@ import ErrorPage from '../components/ErrorPage';
 
 const NewProject = () => {
     const { loading } = useLoader(400);
-    const {auth} = useAuth()
+    const { auth } = useAuth();
 
     if (!auth.token) {
-        return <ErrorPage />
+        return <ErrorPage />;
     } else if (loading) {
-        return <LrgLoader />
-    } else return <NewProjectForm />
+        return <LrgLoader />;
+    } else return <NewProjectForm />;
 };
 
 export default NewProject;

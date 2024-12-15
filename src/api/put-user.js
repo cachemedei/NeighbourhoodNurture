@@ -23,7 +23,7 @@ async function putUser(username, password, fname, lname, email, user, token) {
     });
 
     if (!response.ok) {
-        const fallbackError = `Error trying to edit details`;
+        const fallbackError = `Error trying to edit account details`;
 
         const data = await response.json().catch(() => {
             throw new Error(fallbackError);

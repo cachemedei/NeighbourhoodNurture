@@ -1,4 +1,12 @@
-async function putProject(title, description, goal, image, projectId, token, project) {
+async function putProject(
+    title,
+    description,
+    goal,
+    image,
+    projectId,
+    token,
+    project
+) {
     const url = `${import.meta.env.VITE_API_URL}/projects/${projectId}/`;
 
     const newTitle = title ? title : project.title;

@@ -12,13 +12,13 @@ const DeleteEditBtns = ({ projectId, token, link }) => {
 
     const handleDelete = async () => {
         try {
-            await deleteProject(projectId, token)
+            await deleteProject(projectId, token);
             toast('Project deleted');
             setTimeout(() => {
                 navigate(0);
             }, 2000);
         } catch (error) {
-            toast(error.message)
+            toast(error.message);
             setTimeout(() => {
                 navigate(0);
             }, 2000);
@@ -45,17 +45,15 @@ const DeleteEditBtns = ({ projectId, token, link }) => {
             ) : (
                 <div className='btn-container'>
                     <p className='confirm-text'>Are you sure?</p>
-                    {/* <div className='confirm-btn-container'> */}
-                        <p className='del-btn' onClick={handleDelete}>
-                            Delete
-                        </p>
-                        <p
-                            className='del-btn'
-                            onClick={() => setConfirmDelete(false)}
-                        >
-                            Cancel
-                        </p>
-                    {/* </div> */}
+                    <p className='del-btn' onClick={handleDelete}>
+                        Delete
+                    </p>
+                    <p
+                        className='del-btn'
+                        onClick={() => setConfirmDelete(false)}
+                    >
+                        Cancel
+                    </p>
                 </div>
             )}
         </div>

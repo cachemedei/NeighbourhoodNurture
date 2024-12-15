@@ -7,10 +7,11 @@ import { useState } from 'react';
 import z from 'zod';
 
 import postNewProject from '../api/post-project';
+import toast, { Toaster } from 'react-hot-toast';
 
 const NewProjectForm = () => {
     const navigate = useNavigate();
-    const { auth } = useAuth();
+    //const { auth } = useAuth();
 
     const [projectDetails, setProjectDetails] = useState({
         title: '',
@@ -60,16 +61,18 @@ const NewProjectForm = () => {
                           result.data.image,
                           auth.token
                       )
-                    : alert('Please log in to create a project');
+                    : toast('Please log in to create a project');
                 navigate('/account');
             } catch (error) {
-                console.error('Error creating project: ', error);
+                toast(error.message);
             }
         }
     };
 
     return (
         <section className='new-project'>
+            <Toaster />
+
             <h1 className='title'>Create Your Own Project</h1>
             <form onSubmit={handleSubmit}>
                 {/* title */}
@@ -120,14 +123,6 @@ const NewProjectForm = () => {
                     </button>
                 </div>
             </form>
-
-            {/* URL */}
-            <div className='url-container'>
-                <p>Placeholder URL</p>
-                <p>
-                    https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png
-                </p>
-            </div>
         </section>
     );
 };
