@@ -25,8 +25,11 @@
     width: 380px;
     margin-left: 30px;
 
+    @media screen and (max-width: 780px) {
+        font-size: 14px;
+    }
     @media screen and (max-width: 480px) {
-        width: 280px;
+        width: 310px;
         margin-left: 0;
     }
 }

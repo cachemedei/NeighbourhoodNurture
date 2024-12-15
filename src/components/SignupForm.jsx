@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 import { Link } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 import z from 'zod';
 
@@ -38,39 +39,40 @@ const SignupForm = () => {
         }));
     };
 
-    const handleSubmit = async (e) => {
+    const handleSignup = async (e) => {
         e.preventDefault();
         const result = signupSchema.safeParse(credentials);
         if (!result.success) {
             const error = result.error.errors?.[0];
             if (error) {
-                alert(error.message);
+                toast(error.message);
             }
             return;
-        } else {
-            postSignup(
+        }
+        try {
+            await postSignup(
                 result.data.fName,
                 result.data.lName,
                 result.data.email,
                 result.data.username,
                 result.data.password
-            ).then((response) => {
-                postLogin(result.data.username, result.data.password).then(
-                    (loginResponse) => {
-                        window.localStorage.setItem(
-                            'token',
-                            loginResponse.token
-                        ),
-                            window.localStorage.setItem('id', loginResponse.id),
-                            setAuth({
-                                token: loginResponse.token,
-                                username: result.data.username,
-                                id: loginResponse.user_id,
-                            }),
-                            navigate('/');
-                    }
-                );
-            });
+            );
+
+            const loginResponse = await postLogin(
+                result.data.username,
+                result.data.password
+            );
+            window.localStorage.setItem('token', loginResponse.token),
+                window.localStorage.setItem('id', loginResponse.id),
+                setAuth({
+                    token: loginResponse.token,
+                    username: result.data.username,
+                    id: loginResponse.user_id,
+                });
+
+            navigate('/');
+        } catch (error) {
+            toast(error.message);
         }
     };
 
@@ -78,9 +80,10 @@ const SignupForm = () => {
         <section className='signup'>
             {/* title */}
             <h1 className='title'>Sign Up</h1>
+            <Toaster position='bottom-center' />
 
             {/* signup form */}
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSignup}>
                 <div className='input-container'>
                     <label htmlFor='fName'>First Name:</label>
                     <input onChange={handleChange} type='text' id='fName' />
@@ -95,7 +98,12 @@ const SignupForm = () => {
                 </div>
                 <div className='input-container'>
                     <label htmlFor='username'>Username:</label>
-                    <input onChange={handleChange} type='text' id='username' autoCapitalize='none' />
+                    <input
+                        onChange={handleChange}
+                        type='text'
+                        id='username'
+                        autoCapitalize='none'
+                    />
                 </div>
                 <div className='input-container'>
                     <label htmlFor='password'>Password:</label>
@@ -106,7 +114,9 @@ const SignupForm = () => {
                     />
                 </div>
                 <div className='btn-container'>
-                    <button className='green-btn' type='submit'>Create Account</button>
+                    <button className='green-btn' type='submit'>
+                        Create Account
+                    </button>
                 </div>
                 <p>
                     Already have an account?

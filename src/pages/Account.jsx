@@ -1,6 +1,6 @@
 import './styles/Account.css';
 
-import { Link, Outlet, ScrollRestoration } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 
 import accountImg from '/images/accountimg.webp';
@@ -31,7 +31,6 @@ const Account = () => {
                         Create Project
                     </Link>
                 </div>
-                <ScrollRestoration />
                 <Outlet />
             </div>
         </section>

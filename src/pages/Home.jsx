@@ -7,14 +7,18 @@ import HeroImg from '/images/hero.jpg';
 import useProjects from '../hooks/use-projects';
 import ProjectCard from '../components/ProjectCard';
 import LrgLoader from '../components/LrgLoader';
+import NotFound from '../components/NotFound';
 
 const Home = () => {
 
-    const { projects, isLoading } = useProjects();
+    const { projects, isLoading, error } = useProjects();
     const { auth } = useAuth();
 
     if (isLoading) {
         return <LrgLoader />;
+    }
+    if (error) {
+        return <NotFound error={error.message} />
     }
 
     return (

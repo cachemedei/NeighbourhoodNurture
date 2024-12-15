@@ -61,7 +61,7 @@ const NewProjectForm = () => {
                           auth.token
                       )
                     : alert('Please log in to create a project');
-                navigate('/');
+                navigate('/account');
             } catch (error) {
                 console.error('Error creating project: ', error);
             }

@@ -4,7 +4,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AuthProvider } from './components/AuthProvider';
-import { ScrollRestoration } from 'react-router-dom';
 
 import Nav from './components/Nav';
 import Activity from './components/Activity';

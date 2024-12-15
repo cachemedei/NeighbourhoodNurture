@@ -7,16 +7,22 @@ import toast, { Toaster } from 'react-hot-toast';
 import deleteProject from '../api/delete-project';
 
 const DeleteEditBtns = ({ projectId, token, link }) => {
-    const notify = (msg) => toast('Deleting project');
     const navigate = useNavigate();
     const [confirmDelete, setConfirmDelete] = useState(false);
 
-    const handleDelete = () => {
-        deleteProject(projectId, token);
-        notify();
-        setTimeout(() => {
-            navigate(0);
-        }, 2000);
+    const handleDelete = async () => {
+        try {
+            await deleteProject(projectId, token)
+            toast('Project deleted');
+            setTimeout(() => {
+                navigate(0);
+            }, 2000);
+        } catch (error) {
+            toast(error.message)
+            setTimeout(() => {
+                navigate(0);
+            }, 2000);
+        }
     };
 
     return (

@@ -1,9 +1,8 @@
 import './styles/Nav.css';
 
-import { Link, Outlet, ScrollRestoration, useNavigate } from 'react-router-dom';
+import { Link, Outlet, ScrollRestoration } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 import { useState } from 'react';
-
 import { IoMdMenu, IoMdClose } from 'react-icons/io';
 
 import nurtureLogo from '/images/logo-green.png';
@@ -11,11 +10,8 @@ import Footer from '../components/Footer';
 
 const Nav = () => {
     const [showNav, setShowNav] = useState(false);
-
     const handleShowMenu = () => setShowNav(!showNav);
-
     const { auth, setAuth } = useAuth();
-    const navigate = useNavigate();
 
     const handleLogout = () => {
         window.localStorage.removeItem('token');
@@ -23,6 +19,7 @@ const Nav = () => {
         window.localStorage.removeItem('username');
         setAuth({ token: null, user: '', username: '' });
         setShowNav(false);
+        toast(`You've been logged out`);
     };
 
     return (

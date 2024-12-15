@@ -1,31 +1,19 @@
 import './styles/OwnedPledges.css';
 
 import { useAuth } from '../hooks/use-auth';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaChevronRight, FaChevronDown } from 'react-icons/fa6';
 
 import usePledges from '../hooks/use-pledges';
-import useProject from '../hooks/use-project';
+import PledgeProjectTitle from './PledgeProjectTitle';
 
 const OwnedPledges = () => {
-    const { pledges } = usePledges();
     const { auth } = useAuth();
-    //const { project } = useProject(pledges.project);
     const userId = auth.user;
+    const { ownedPledges } = usePledges(userId);
 
-    const [usersPledges, setUsersPledges] = useState([]);
     const [showData, setShowData] = useState(false);
-    const handleShowData = () => setShowData(!showData);
-
-    useEffect(() => {
-        let list = [];
-        for (let id = 0; id < pledges.length; id++) {
-            if (pledges[id].supporter == userId) {
-                list.push(pledges[id]);
-            }
-        }
-        setUsersPledges(list);
-    }, [pledges]);
+    const handleShowData = () => setShowData(!showData)
 
     return (
         <section className='owned-pledges'>
@@ -40,15 +28,15 @@ const OwnedPledges = () => {
             {showData ? (
                 <>
                     <ul className='list'>
-                        {usersPledges.map((pledge, i) => (
-                            <li className='item' key={i}>
-                                ${pledge.amount} for {pledge.project}
-                            </li>
+                        {ownedPledges?.map((pledge, i) => (
+                            <div className='info-container'>
+                                <PledgeProjectTitle id={pledge.project} />
+                                <li className='value' key={i}>
+                                    ${pledge.amount}
+                                </li>
+                            </div>
                         ))}
                     </ul>
-                    <p className='summary'>
-                        In total you've pledged: lol i dont know yet
-                    </p>
                 </>
             ) : null}
         </section>
