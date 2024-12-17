@@ -1,8 +1,9 @@
 import './styles/ProjectCard.css';
 
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 
 const ProjectCard = ({ projectData }) => {
+    const { showNav, setShowNav } = useOutletContext();
     const projectLink = `project/${projectData.id}`;
 
     const truncateString = (str, num) => {
@@ -12,7 +13,7 @@ const ProjectCard = ({ projectData }) => {
     };
 
     return (
-        <Link to={projectLink} className='project-card'>
+        <Link to={projectLink} className='project-card' onClick={() => setShowNav(false)}>
             <img src={projectData.image} alt='' />
             <h1 className='card-title'>{projectData.title}</h1>
             <p className='description'>

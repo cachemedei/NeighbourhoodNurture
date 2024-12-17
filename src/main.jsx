@@ -11,7 +11,6 @@ import EditProfile from './components/EditProfile';
 import EditProject from './components/EditProject';
 
 import Home from './pages/Home';
-import About from './pages/About';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Project from './pages/Project';
@@ -24,7 +23,6 @@ const router = createBrowserRouter([
         element: <Nav />,
         children: [
             { path: '/', element: <Home /> },
-            { path: '/about', element: <About /> },
             { path: '/login', element: <Login /> },
             { path: '/signup', element: <Signup /> },
             {

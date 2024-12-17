@@ -20,17 +20,16 @@ const Footer = () => {
         <footer>
             <img src={footerImg} alt='' />
             <section className='footer-links'>
-                <Link to='/about'>about</Link>
-                <Link to='/'>home</Link>
+                <Link to='/'>Home</Link>
                 {auth.token ? (
                     <>
-                        <Link to='/account'>account</Link>
-                        <p onClick={handleLogout}>log out</p>
+                        <Link to='/account'>Account</Link>
+                        <p onClick={handleLogout}>Log Out</p>
                     </>
                 ) : (
                     <>
-                        <Link to='/login'>log in</Link>
-                        <Link to='/signup'>sign up</Link>
+                        <Link to='/login'>Log In</Link>
+                        <Link to='/signup'>Sign Up</Link>
                     </>
                 )}
             </section>

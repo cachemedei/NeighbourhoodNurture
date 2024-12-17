@@ -1,6 +1,6 @@
 import './styles/Home.css';
 
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 
 import HeroImg from '/images/hero.jpg';
@@ -10,6 +10,7 @@ import LrgLoader from '../components/LrgLoader';
 import NotFound from '../components/NotFound';
 
 const Home = () => {
+    const { showNav, setShowNav } = useOutletContext();
     const { projects, isLoading, error } = useProjects();
     const { auth } = useAuth();
 
@@ -38,9 +39,16 @@ const Home = () => {
                 </p>
                 <button className='green-btn'>
                     {auth.token ? (
-                        <Link to='/newproject'>Create Project</Link>
+                        <Link
+                            to='/newproject'
+                            onClick={() => setShowNav(false)}
+                        >
+                            Create Project
+                        </Link>
                     ) : (
-                        <Link to='/login'>Get Started</Link>
+                        <Link to='/login' onClick={() => setShowNav(false)}>
+                            Get Started
+                        </Link>
                     )}
                 </button>
             </section>

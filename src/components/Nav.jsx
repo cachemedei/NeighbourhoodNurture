@@ -28,7 +28,7 @@ const Nav = () => {
     return (
         <nav>
             <div className='nav'>
-                <Link to='/'>
+                <Link to='/' onClick={() => setShowNav(false)}>
                     <img src={nurtureLogo} alt='' />
                 </Link>
 
@@ -36,9 +36,6 @@ const Nav = () => {
                 <section className='desktop-menu'>
                     <Link className='link' to='/'>
                         Home
-                    </Link>
-                    <Link className='link' to='/about'>
-                        About
                     </Link>
                     {auth.token ? (
                         <>
@@ -76,9 +73,6 @@ const Nav = () => {
                     <Link onClick={handleShowMenu} className='link' to='/'>
                         Home
                     </Link>
-                    <Link className='link' to='/about'>
-                        About
-                    </Link>
                     {auth.token ? (
                         <>
                             <Link
@@ -87,6 +81,13 @@ const Nav = () => {
                                 to='/account'
                             >
                                 Account
+                            </Link>
+                            <Link
+                                onClick={handleShowMenu}
+                                className='link'
+                                to='/newproject'
+                            >
+                                Create Project
                             </Link>
                             <Link
                                 className='link'
@@ -117,7 +118,7 @@ const Nav = () => {
                 </div>
             ) : null}
             <ScrollRestoration />
-            <Outlet />
+            <Outlet context={{ showNav, setShowNav }} />
             <Footer />
         </nav>
     );
