@@ -9,15 +9,15 @@ import z from 'zod';
 
 import postLogin from '../api/post-login';
 
+const loginSchema = z.object({
+    username: z.string().min(1, { message: 'Username required' }),
+    password: z.string().min(1, { message: 'Please enter your password' }),
+});
+
 const LoginForm = () => {
     const navigate = useNavigate();
-    const from = location.state?.from || '/'
+    const from = location.state?.from || '/';
     const { auth, setAuth } = useAuth();
-
-    const loginSchema = z.object({
-        username: z.string().min(1, { message: 'Username required' }),
-        password: z.string().min(1, { message: 'Please enter your password' }),
-    });
 
     const [credentials, setCredentials] = useState({
         username: '',

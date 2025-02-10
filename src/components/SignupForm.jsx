@@ -11,17 +11,17 @@ import z from 'zod';
 import postSignup from '../api/post-signup';
 import postLogin from '../api/post-login';
 
+const signupSchema = z.object({
+    fName: z.string().min(1, 'Enter your first name'),
+    lName: z.string().min(1, 'Enter your last name'),
+    email: z.string().min(1, 'Enter your email').email(),
+    username: z.string().min(1, 'Enter a username'),
+    password: z.string().min(6, 'Password must be at least 6 characters'),
+});
+
 const SignupForm = () => {
     const navigate = useNavigate();
     const { auth, setAuth } = useAuth();
-
-    const signupSchema = z.object({
-        fName: z.string().min(1, 'Enter your first name'),
-        lName: z.string().min(1, 'Enter your last name'),
-        email: z.string().min(1, 'Enter your email').email(),
-        username: z.string().min(1, 'Enter a username'),
-        password: z.string().min(6, 'Password must be at least 6 characters'),
-    });
 
     const [credentials, setCredentials] = useState({
         fName: '',
