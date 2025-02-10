@@ -1,6 +1,6 @@
 import './styles/Home.css';
 
-import { Link, useOutletContext } from 'react-router-dom';
+import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 
 import HeroImg from '/images/hero.jpg';
@@ -13,6 +13,14 @@ const Home = () => {
     const { showNav, setShowNav } = useOutletContext();
     const { projects, isLoading, error } = useProjects();
     const { auth } = useAuth();
+    const navigate = useNavigate()
+
+    const redirect = () => navigate('/login')
+
+    const redirectToLogin = () => {
+        setShowNav(false)
+        redirect('/login', {state: {from: '/newproject'}})
+    }
 
     if (isLoading) {
         return <LrgLoader />;
@@ -37,20 +45,21 @@ const Home = () => {
                     a cleaner, greener and more vibrant local community all
                     starts here, with you.
                 </p>
-                <button className='green-btn'>
+                <>
                     {auth.token ? (
                         <Link
                             to='/newproject'
                             onClick={() => setShowNav(false)}
+                            className='green-btn'
                         >
                             Create Project
                         </Link>
                     ) : (
-                        <Link to='/login' onClick={() => setShowNav(false)}>
-                            Get Started
-                        </Link>
+                        <button className='green-btn' onClick={redirectToLogin}>
+                            Create Project
+                        </button>
                     )}
-                </button>
+                </>
             </section>
 
             {/* projects */}

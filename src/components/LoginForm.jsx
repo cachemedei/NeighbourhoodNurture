@@ -11,6 +11,7 @@ import postLogin from '../api/post-login';
 
 const LoginForm = () => {
     const navigate = useNavigate();
+    const from = location.state?.from || '/'
     const { auth, setAuth } = useAuth();
 
     const loginSchema = z.object({
@@ -54,7 +55,7 @@ const LoginForm = () => {
                     username: result.data.username,
                     user: response.user_id,
                 });
-                navigate('/');
+                navigate(from);
             } catch (error) {
                 toast(error.message);
             }
